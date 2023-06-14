@@ -19,7 +19,7 @@
     "build-storybook": "storybook build",
     "nvmuse": "source ~/.nvm/nvm.sh && nvm use",
     "prettier": "prettier --write .",
-    "lint": "next lint",
+    "lint": "eslint",
     "prepare": "npm run nvmuse && husky install"
   },
   "eslintConfig": {
