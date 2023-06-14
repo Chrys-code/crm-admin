@@ -1,4 +1,4 @@
-const colors = {
+export const colors = {
   white: '#FFFFFF',
   darkGrey: '#505050',
   darkBlue: '#D3DCF3',
@@ -28,3 +28,5 @@ export const icon = {
   magenta: colors.magenta,
   white: colors.white,
 };
+
+export const themeColors = { background, accent, icon };

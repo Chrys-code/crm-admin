@@ -4,7 +4,7 @@ import Icon from './icon';
 import { IconProps } from './icon.types';
 
 export default {
-  title: 'Icon',
+  title: 'Base/Icon',
   component: Icon,
   argTypes: {
     //Write arg types for documentation
@@ -16,5 +16,7 @@ const Template: ComponentStory<typeof Icon> = (
 ): JSX.Element => <Icon {...args}>Click here</Icon>;
 export const Primary: ComponentStory<FC<IconProps>> = Template.bind({});
 Primary.args = {
-  //Write arg types for documentation
+  name: 'group',
+  size: 'large',
+  background: true,
 };

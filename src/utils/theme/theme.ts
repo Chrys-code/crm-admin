@@ -8,11 +8,10 @@ const theme = {
 
   font: {
     size: {
-      xSmall: '12px',
-      small: '14px',
-      regular: '16px',
-      large: '20px',
-      xLarge: '24px',
+      small: '0.75em',
+      regular: '1em',
+      large: '1.25em',
+      xLarge: '1.5em',
     },
 
     weight: {
@@ -37,8 +36,8 @@ const theme = {
 
   borders: {
     componentContainer: '12px',
-    wrapper: '10px',
-    container: '8px',
+    container: '10px',
+    wrapper: '6px',
   },
 
   shadows: [' 0px 2px 8px 0px rgba(0, 0, 0, 0.2)'],

@@ -1,2 +1,5 @@
 export { default } from './theme';
-export type { IconColor, IconSize } from './types';
+
+export { themeColors } from './colors';
+
+export type { ThemeColors, AccentColor, IconColor, IconSize } from './types';
