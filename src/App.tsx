@@ -1,5 +1,4 @@
 import React from 'react';
-import './App.css';
 import { ThemeProvider } from 'styled-components';
 import theme from './utils/theme';
 import Icon from './components/basic/icon';
@@ -23,11 +22,9 @@ cacheLocation={'localstorage'}>
 function App(): JSX.Element {
   return (
     <ThemeProvider theme={theme}>
-      <div className="App">
-        <header className="App-header">
-          <Icon name="group" size="large" />
-        </header>
-      </div>
+      <header>
+        <Icon name="group" size="large" />
+      </header>
     </ThemeProvider>
   );
 }
