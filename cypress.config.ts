@@ -5,5 +5,6 @@ export default defineConfig({
     baseUrl: 'http://localhost:3000',
     port: 57689,
     video: false,
+    supportFile: false,
   },
 });
