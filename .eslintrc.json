@@ -1,0 +1,16 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "extends": ["eslint:recommended"],
+  "globals": {
+    "React": "readonly",
+    "JSX": true
+  },
+  "rules": {
+    "no-unused-vars": [1, { "args": "after-used", "argsIgnorePattern": "^_" }],
+    "no-empty-pattern": [1] // sets empty-object severity to 0=off 1=warning 2=error
+  },
+
+  "env": {
+    "jest": true
+  }
+}

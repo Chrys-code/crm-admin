@@ -1,25 +1,34 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { ThemeProvider } from 'styled-components';
+import theme from './utils/theme';
+import Icon from './components/basic/icon';
+// import { Auth0Provider } from '@auth0/auth0-react';
+// import { auth0domain } from './utils/model';
 
-function App() {
+{
+  /* <Auth0Provider
+domain={auth0domain}
+audience={`${process.env.REACT_APP_AUDIENCE}`}
+clientId={`${process.env.REACT_APP_AUTHOH_USER_CLIENT_ID}`}
+redirectUri={`${window.location.origin}/callback`}
+useRefreshTokens={true}
+scope={'openid offline_access profile email'}
+cacheLocation={'localstorage'}>
+  <AppConnected />
+</Auth0Provider>
+ */
+}
+
+function App(): JSX.Element {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+      <div className="App">
+        <header className="App-header">
+          <Icon name="group" size="large" />
+        </header>
+      </div>
+    </ThemeProvider>
   );
 }
 
