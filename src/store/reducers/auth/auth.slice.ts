@@ -7,9 +7,22 @@ import {
 } from '@reduxjs/toolkit';
 import { Tokens, refreshTokenRequest } from '../../apis/auth';
 import { RootState, AppDispatch } from '../../store';
-import { AuthState, SetTokensPayload } from './auth.slice.types';
+import {
+  AuthState,
+  AuthUser,
+  AuthUserPayload,
+  SetTokensPayload,
+} from './auth.slice.types';
 
 const initialState: AuthState = {
+  user: {
+    externalId: null,
+    email: null,
+    nickname: null,
+    name: null,
+    email_verified: null,
+    picture: null,
+  },
   accessToken: localStorage.getItem('access_token') || '',
   refreshToken: localStorage.getItem('refresh_token') || '',
 };
@@ -32,6 +45,21 @@ const auth = createSlice({
   name: 'auth',
   initialState,
   reducers: {
+    setAuthUser: (
+      state: AuthState,
+      { payload }: { payload: AuthUserPayload }
+    ): void => {
+      const authUser: AuthUser = {
+        externalId: payload.sub,
+        email: payload.email,
+        nickname: payload.nickname,
+        name: payload.name,
+        email_verified: payload.email_verified,
+        picture: payload.picture,
+      };
+
+      state.user = authUser;
+    },
     setTokens: (
       state: AuthState,
       action: PayloadAction<SetTokensPayload>

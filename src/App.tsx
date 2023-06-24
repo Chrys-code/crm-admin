@@ -1,6 +1,7 @@
 import React from 'react';
-import Icon from './components/basic/icon';
+import Icon from './components/base/icon';
 import { useAuth0 } from '@auth0/auth0-react';
+import PageLayout from './layout/page/pageLayout';
 
 const Profile = (): JSX.Element => {
   const { user, isAuthenticated, isLoading } = useAuth0();
@@ -49,9 +50,10 @@ function App(): JSX.Element {
         <Icon name="group" size="large" />
         <Profile />
       </header>
-      <LoginButton />
-      <LogoutButton />
-      <main></main>
+      <PageLayout>
+        <LoginButton />
+        <LogoutButton />
+      </PageLayout>
     </>
   );
 }
