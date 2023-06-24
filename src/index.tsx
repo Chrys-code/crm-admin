@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { ThemeProvider } from 'styled-components';
 import reportWebVitals from './reportWebVitals';
+import { Auth0Provider } from '@auth0/auth0-react';
 import { Provider } from 'react-redux';
 import store from './store/store';
 import theme from './utils/theme';
@@ -16,7 +17,17 @@ root.render(
   <React.StrictMode>
     <Provider store={store}>
       <ThemeProvider theme={theme}>
-        <App />
+        <Auth0Provider
+          domain={`${process.env.REACT_APP_AUTH0_DOMAIN}`}
+          clientId={`${process.env.REACT_APP_AUTH0_CLIENT_ID}`}
+          useRefreshTokens={true}
+          cacheLocation={'localstorage'}
+          authorizationParams={{
+            redirect_uri: window.location.origin,
+          }}
+        >
+          <App />
+        </Auth0Provider>
       </ThemeProvider>
     </Provider>
   </React.StrictMode>

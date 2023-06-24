@@ -1,19 +1,17 @@
-import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
+import {
+  createSlice,
+  createAsyncThunk,
+  PayloadAction,
+  Reducer,
+  ActionReducerMapBuilder,
+} from '@reduxjs/toolkit';
 import { Tokens, refreshTokenRequest } from '../../apis/auth';
 import { RootState, AppDispatch } from '../../store';
-
-export interface AuthState extends Tokens {
-  email: string;
-  loginRedirect: string;
-}
-
-export type SetTokensPayload = Tokens;
+import { AuthState, SetTokensPayload } from './auth.slice.types';
 
 const initialState: AuthState = {
   accessToken: localStorage.getItem('access_token') || '',
   refreshToken: localStorage.getItem('refresh_token') || '',
-  email: '',
-  loginRedirect: '/home',
 };
 
 const refreshToken = createAsyncThunk<
@@ -43,18 +41,6 @@ const auth = createSlice({
       localStorage.setItem('accessToken', action.payload.accessToken);
       localStorage.setItem('refreshToken', action.payload.refreshToken);
     },
-    setEmail: (
-      state: AuthState,
-      action: PayloadAction<{ email: string }>
-    ): void => {
-      state.email = action.payload.email;
-    },
-    setLoginRedirect: (
-      state: AuthState,
-      action: PayloadAction<{ pathname: string }>
-    ): void => {
-      state.loginRedirect = action.payload.pathname;
-    },
     logout: (state: AuthState): void => {
       state.accessToken = '';
       state.refreshToken = '';
@@ -62,7 +48,7 @@ const auth = createSlice({
       localStorage.removeItem('refreshToken');
     },
   },
-  extraReducers: (builder): void => {
+  extraReducers: (builder: ActionReducerMapBuilder<AuthState>): void => {
     builder.addCase(refreshToken.fulfilled, (state, { payload }): void => {
       state.accessToken = payload;
       localStorage.setItem('accessToken', payload);
@@ -70,7 +56,7 @@ const auth = createSlice({
   },
 });
 
-const authReducer = auth.reducer;
+const authReducer: Reducer<AuthState> = auth.reducer;
 export default authReducer;
 export const actions = {
   ...auth.actions,

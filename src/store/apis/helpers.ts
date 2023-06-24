@@ -35,18 +35,22 @@ export const request = async ({
   body,
   accessToken,
 }: RequestProps): Promise<any> => {
-  const response: Response = await fetch(url, {
-    method,
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${accessToken}`,
-    },
-    body: JSON.stringify(body),
-  });
+  try {
+    const response: Response = await fetch(url, {
+      method,
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${accessToken}`,
+      },
+      body: JSON.stringify(body),
+    });
 
-  errorHandler(response);
+    errorHandler(response);
 
-  const data: any = await response.json();
+    const data: any = await response.json();
 
-  return data;
+    return data;
+  } catch (error: any) {
+    throw new Error(error.message);
+  }
 };
