@@ -10,6 +10,8 @@ const Navigation: FC<
 > = ({}: PropsWithChildren<NavigationProps>): JSX.Element => {
   const { user, isAuthenticated, isLoading } = useAuth0();
 
+  console.log(user);
+
   if (isLoading) {
     return <div>Loading ...</div>;
   }

@@ -1,11 +1,20 @@
 import { User } from './user.types';
 import { request } from '../helpers';
 
-const baseUrl: string | undefined = process.env.API_BASE_URL;
-const url: string = `${baseUrl}/user`;
+// const baseUrl: string | undefined = process.env.API_BASE_URL;
+// const url: string = `${baseUrl}/user`;
 
-export const getUserRequest = async (): Promise<User> =>
-  await request({ url: url, method: 'GET', accessToken: '' });
+const url = 'http://localhost:8080/user';
+
+export const getUserRequest = async (
+  id: string,
+  accessToken: string
+): Promise<User> =>
+  await request({
+    url: `${url}?id=${id}`,
+    method: 'GET',
+    accessToken: accessToken,
+  });
 
 export const updateUserRequest = async (payload: User): Promise<User> =>
   await request({ url: url, method: 'PATCH', body: payload, accessToken: '' });

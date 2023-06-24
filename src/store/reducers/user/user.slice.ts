@@ -27,7 +27,7 @@ const getUser = createAsyncThunk<
   generateReauthenticatingThunkApiAction(
     async (state: RootState): Promise<User> => {
       const { accessToken } = state.auth;
-      const user: User = await getUserRequest();
+      const user: User = await getUserRequest('', '');
       return user;
     }
   )

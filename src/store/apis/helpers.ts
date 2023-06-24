@@ -7,39 +7,42 @@ interface RequestProps {
 
 const errorHandler = (response: Response): void => {
   if (response.status === 400) {
-    throw new Error('400 Bad Request');
+    throw new Error(`400 Bad Request, response: ${response}`);
   }
   if (response.status === 401) {
-    throw new Error('401 Unauthorized');
+    throw new Error(`401 Unauthorized, response: ${response}`);
   }
   if (response.status === 403) {
-    throw new Error('403 Forbidden');
+    throw new Error(`403 Forbidden, response: ${response}`);
   }
   if (response.status === 404) {
-    throw new Error('404 Not found');
+    throw new Error(`404 Not found, response: ${response}`);
   }
   if (response.status === 500) {
-    throw new Error('500 Internal Server Error');
+    throw new Error(`500 Internal Server Error, response: ${response}`);
   }
   if (response.status === 502) {
-    throw new Error('502 Bad Gateway');
+    throw new Error(`502 Bad Gateway, response: ${response}`);
   }
   if (response.status === 504) {
-    throw new Error('504 Gateway Timeout');
+    throw new Error(`504 Gateway Timeout, response: ${response}`);
   }
 };
+
 
 export const request = async ({
   url,
   method,
   body,
   accessToken,
-}: RequestProps): Promise<any> => {
+}: 
+RequestProps): Promise<any> => {
   try {
     const response: Response = await fetch(url, {
       method,
       headers: {
-        'Content-Type': 'application/json',
+        "Accept": "application/json",
+        "Content-Type": "application/json",
         Authorization: `Bearer ${accessToken}`,
       },
       body: JSON.stringify(body),
@@ -51,6 +54,7 @@ export const request = async ({
 
     return data;
   } catch (error: any) {
-    throw new Error(error.message);
+    console.log(error);
+    return null;
   }
 };
