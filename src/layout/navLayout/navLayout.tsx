@@ -1,10 +1,14 @@
-import React, { FC, PropsWithChildren } from 'react';
-import { NavLayoutContainer } from './navLayout.styles';
+import React, { Children, FC, PropsWithChildren } from 'react';
+import { NavLayoutContainer, Nav } from './navLayout.styles';
 import { NavLayoutProps } from './navLayout.types';
 
-const NavLayout: FC<
-  NavLayoutProps
-> = ({}: PropsWithChildren<NavLayoutProps>): JSX.Element => {
-  return <NavLayoutContainer></NavLayoutContainer>;
+const NavLayout: FC<NavLayoutProps> = ({
+  children,
+}: PropsWithChildren<NavLayoutProps>): JSX.Element => {
+  return (
+    <NavLayoutContainer>
+      <Nav>{children}</Nav>
+    </NavLayoutContainer>
+  );
 };
 export default NavLayout;

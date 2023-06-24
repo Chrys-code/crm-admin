@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { PageLayoutContainerStyleProps } from './pageLayout.types';
 
-export const PageLayoutContainer = styled.main<PageLayoutContainerStyleProps>`
+export const PageContent = styled.main<PageLayoutContainerStyleProps>`
   ${({ theme }) => ({})}
 `;

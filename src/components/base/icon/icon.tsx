@@ -9,6 +9,7 @@ const Icon = ({
   color = 'red',
   size = 'small',
   background = false,
+  backgroundColor = 'yellow',
   ...rest
 }: PropsWithChildren<IconProps>): JSX.Element => {
   const iconSize: string = theme.icon.sizes[size].icon;
@@ -28,7 +29,11 @@ const Icon = ({
 
   if (background && SvgIcon) {
     return (
-      <IconContainer width={backgroundSize} height={backgroundSize}>
+      <IconContainer
+        width={backgroundSize}
+        height={backgroundSize}
+        color={backgroundColor}
+      >
         <SvgIcon
           width={iconSize}
           height={iconSize}

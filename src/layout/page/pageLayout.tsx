@@ -1,10 +1,22 @@
 import React, { FC, PropsWithChildren } from 'react';
-import { PageLayoutContainer } from './pageLayout.styles';
+import { PageContent } from './pageLayout.styles';
 import { PageLayoutProps } from './pageLayout.types';
+import { Outlet } from 'react-router-dom';
+import NavLayout from '../navLayout';
+import Navigation from '../../components/navigation';
 
-const PageLayout: FC<PageLayoutProps> = ({
-  children,
-}: PropsWithChildren<PageLayoutProps>): JSX.Element => {
-  return <PageLayoutContainer>{children}</PageLayoutContainer>;
+const PageLayout: FC<
+  PageLayoutProps
+> = ({}: PropsWithChildren<PageLayoutProps>): JSX.Element => {
+  return (
+    <>
+      <NavLayout>
+        <Navigation />
+      </NavLayout>
+      <PageContent>
+        <Outlet />
+      </PageContent>
+    </>
+  );
 };
 export default PageLayout;

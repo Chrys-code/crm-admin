@@ -7,9 +7,11 @@ export interface IconProps extends SVGProps<SVGSVGElement> {
   color?: IconColor;
   size?: IconSize;
   background?: boolean;
+  backgroundColor?: IconColor;
 }
 
 export interface IconContainerStyleProps {
   width: string;
   height: string;
+  backgroundColor?: IconColor;
 }
