@@ -7,7 +7,7 @@ import { Provider } from 'react-redux';
 import store from './store/store';
 import theme from './utils/theme';
 import App from './App';
-import './index.css';
+import GlobalStyles from './styles/globalStyles';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -26,6 +26,7 @@ root.render(
             redirect_uri: window.location.origin,
           }}
         >
+          <GlobalStyles />
           <App />
         </Auth0Provider>
       </ThemeProvider>

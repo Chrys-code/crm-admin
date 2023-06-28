@@ -9,7 +9,8 @@ const Icon = ({
   color = 'red',
   size = 'small',
   background = false,
-  backgroundColor = 'yellow',
+  backgroundColor = 'green',
+  rounded = true,
   ...rest
 }: PropsWithChildren<IconProps>): JSX.Element => {
   const iconSize: string = theme.icon.sizes[size].icon;
@@ -33,6 +34,7 @@ const Icon = ({
         width={backgroundSize}
         height={backgroundSize}
         color={backgroundColor}
+        rounded={rounded}
       >
         <SvgIcon
           width={iconSize}

@@ -4,9 +4,9 @@ export const colors = {
   darkBlue: '#D3DCF3',
   lightBlue: '#F3F7FF',
   lightBlueShadow: '#D1D8E7',
-  background: '#FBFBFB',
+  background: '#f1f9ff',
   red: '#F24559',
-  green: '#1D904B',
+  green: '#009485',
   yellow: '#E9CA27',
   magenta: '#BC45DA',
 };
@@ -29,4 +29,4 @@ export const icon = {
   white: colors.white,
 };
 
-export const themeColors = { background, accent, icon };
+export const themeColors = { background, accent, icon, colors };

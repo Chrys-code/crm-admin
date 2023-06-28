@@ -4,6 +4,7 @@ import Login from '../pages/login';
 import ErrorPage from '../pages/error';
 import PageLayout from '../layout/page/pageLayout';
 import Users from '../pages/users';
+import Profile from '../pages/profile';
 
 export const router = createBrowserRouter([
   {
@@ -27,6 +28,11 @@ export const router = createBrowserRouter([
           //   errorElement: <ErrorPage />,
           // },
         ],
+      },
+      {
+        path: '/profile',
+        element: <Profile />,
+        errorElement: <ErrorPage />,
       },
     ],
   },

@@ -1,4 +1,4 @@
-import { accent, background, icon } from './colors';
+import { accent, background, icon, colors } from './colors';
 
 const theme = {
   devices: {
@@ -8,10 +8,10 @@ const theme = {
 
   font: {
     size: {
-      small: '0.75em',
-      regular: '1em',
-      large: '1.25em',
-      xLarge: '1.5em',
+      small: '0.75rem',
+      regular: '1rem',
+      large: '1.25rem',
+      xLarge: '1.5rem',
     },
 
     weight: {
@@ -24,26 +24,27 @@ const theme = {
     background,
     accent,
     icon,
+    colors,
   },
 
   icon: {
     sizes: {
-      small: { background: '32px', icon: '24px' },
-      medium: { background: '40px', icon: '32px' },
-      large: { background: '48px', icon: '40px' },
+      small: { background: '2rem', icon: '1.5rem' },
+      medium: { background: '2.5rem', icon: '2rem' },
+      large: { background: '3rem', icon: '2.5rem' },
     },
   },
 
   borders: {
-    componentContainer: '12px',
-    container: '10px',
-    wrapper: '6px',
+    componentContainer: '0.75rem',
+    container: '0.625rem',
+    wrapper: '0.375rem',
   },
 
   shadows: [' 0px 2px 8px 0px rgba(0, 0, 0, 0.2)'],
 
-  space: (value: number): string => `${value * 8}px`,
-  border: (value: number): string => `${value * 2}px`,
+  space: (value: number): string => `${value / 2}rem`,
+  border: (value: number): string => `${value / 2}rem`,
 };
 
 export type Theme = typeof theme;
