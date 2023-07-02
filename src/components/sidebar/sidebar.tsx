@@ -1,29 +1,18 @@
 import React, { FC, PropsWithChildren } from 'react';
 import { SidebarContainer } from './sidebar.styles';
+import List from '../base/list';
+import { getMenuOptionsByLocation } from './helpers';
+import { ListItemType } from '../base/list/list.types';
 import { SidebarProps } from './sidebar.types';
-import { Link } from 'react-router-dom';
 
-const Sidebar: FC<
-  SidebarProps
-> = ({}: PropsWithChildren<SidebarProps>): JSX.Element => {
+const Sidebar: FC<SidebarProps> = ({
+  location,
+}: PropsWithChildren<SidebarProps>): JSX.Element => {
+  const menuItems: ListItemType[] = getMenuOptionsByLocation(location);
+
   return (
     <SidebarContainer>
-      <ul>
-        <li>
-          <Link to="/">
-            <a>
-              <span>Home</span>
-            </a>
-          </Link>{' '}
-        </li>
-        <li>
-          <Link to="/users">
-            <a>
-              <span>Users</span>
-            </a>
-          </Link>{' '}
-        </li>
-      </ul>
+      <List itemType="link" items={menuItems} />
     </SidebarContainer>
   );
 };

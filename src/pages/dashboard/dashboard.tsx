@@ -8,6 +8,20 @@ const Dashboard: FC<
   return (
     <DashboardContainer>
       <span>HELLO THIS IS YOUR DASHBOARD</span>
+      <ul>
+        <li>
+          <span>Quick access</span>
+        </li>
+        <li>
+          <span>Updates</span>
+        </li>
+        <li>
+          <span>eg. added a new feature we want to share</span>
+        </li>
+        <li>
+          <span>Selected modules</span>
+        </li>
+      </ul>
     </DashboardContainer>
   );
 };
