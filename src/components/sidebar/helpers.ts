@@ -1,5 +1,5 @@
 import { ListItemType } from '../base/list/list.types';
-import { emailingRoutes, homeRoutes, profileRoutes } from './routeLinks';
+import { emailingRoutes, baseRoutes, profileRoutes } from './routeLinks';
 
 export const getMenuOptionsByLocation = (
   windowLocation: any
@@ -7,11 +7,15 @@ export const getMenuOptionsByLocation = (
   const location: string = windowLocation.pathname;
 
   if (location.startsWith('/dashboard')) {
-    return homeRoutes;
+    return baseRoutes;
+  }
+
+  if (location.startsWith('/users')) {
+    return baseRoutes;
   }
 
   if (location.startsWith('/emailing')) {
-    return emailingRoutes;
+    return [...baseRoutes, ...emailingRoutes];
   }
 
   if (location.startsWith('/profile')) {

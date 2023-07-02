@@ -7,6 +7,7 @@ import PageLayout from '../layout/page/pageLayout';
 import Profile from '../pages/profile';
 import Emailing from '../pages/emailing';
 import Subscription from '../pages/subscription/subscription';
+import Users from '../pages/users';
 
 export const router = createBrowserRouter([
   {
@@ -19,18 +20,18 @@ export const router = createBrowserRouter([
         element: <Dashboard />,
         errorElement: <ErrorPage />,
       },
-      // {
-      //   path: '/users',
-      //   element: <Users />,
-      //   errorElement: <ErrorPage />,
-      //   children: [
-      //     // {
-      //     //   path: '/users/:userId',
-      //     //   element: <User />,
-      //     //   errorElement: <ErrorPage />,
-      //     // },
-      //   ],
-      // },
+      {
+        path: '/users',
+        element: <Users />,
+        errorElement: <ErrorPage />,
+        children: [
+          // {
+          //   path: '/users/:userId',
+          //   element: <User />,
+          //   errorElement: <ErrorPage />,
+          // },
+        ],
+      },
       {
         path: '/emailing',
         element: <Emailing />,

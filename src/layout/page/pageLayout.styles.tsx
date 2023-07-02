@@ -8,7 +8,11 @@ export const PageContent = styled.main<PageLayoutContainerStyleProps>`
     justifyContent: 'flex-start',
     alignItems: 'center',
     width: '100%',
-    padding: theme.space(3),
-    paddingLeft: `calc(20% + ${theme.space(3)})`,
-  })}
+    padding: theme.space(4),
+    paddingLeft: `calc(20% + ${theme.space(4)})`,
+  })};
+
+  > * {
+    margin: ${(p) => p.theme.space(2)} 0px;
+  }
 `;

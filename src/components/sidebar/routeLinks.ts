@@ -1,4 +1,12 @@
-export const homeRoutes = [
+export const baseRoutes = [
+  {
+    label: 'Home',
+    action: '/dashboard',
+  },
+  {
+    label: 'Users',
+    action: '/users',
+  },
   {
     label: 'Emailing',
     action: '/emailing',
@@ -21,10 +29,6 @@ export const profileRoutes = [
 ];
 
 export const emailingRoutes = [
-  {
-    label: 'Home',
-    action: '/dashboard',
-  },
   {
     label: 'Templates',
     action: '/templates',

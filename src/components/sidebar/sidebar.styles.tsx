@@ -8,7 +8,7 @@ export const SidebarContainer = styled.nav<SidebarContainerStyleProps>`
     width: '20%',
     height: '100%',
     minHeight: 'calc(100vh - 6rem)',
-    padding: theme.space(3),
+    padding: theme.space(4),
     backgroundColor: theme.colors.background.white,
   })}
 `;

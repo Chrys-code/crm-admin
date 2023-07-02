@@ -18,7 +18,7 @@ export const HeaderContainer = styled.header<HeaderContainerStyleProps>`
 `;
 
 export const UserInfoWrapper = styled.div`
-  ${({ theme }) => ({
+  ${() => ({
     flexDirection: 'row !important',
   })}
 `;
@@ -29,6 +29,7 @@ export const LogoPlaceholder = styled.div`
     height: '3rem',
     backgroundColor: theme.colors.accent.green,
     borderRadius: '0.625rem',
+    marginRight: theme.space(3),
   })}
 `;
 
@@ -38,5 +39,11 @@ export const UserAvatar = styled.img`
     height: '3rem',
     backgroundColor: theme.colors.accent.green,
     borderRadius: '0.625rem',
+  })}
+`;
+
+export const LogoAndTitleWrapper = styled.div`
+  ${() => ({
+    flexDirection: 'row !important',
   })}
 `;

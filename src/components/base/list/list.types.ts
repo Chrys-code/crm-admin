@@ -4,5 +4,3 @@ export interface ListProps {
   items: ListItemType[];
   itemType: 'link' | 'button';
 }
-
-export interface ListContainerStyleProps {}

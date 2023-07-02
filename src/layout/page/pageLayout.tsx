@@ -12,7 +12,7 @@ const PageLayout: FC<
 
   return (
     <>
-      <HeaderContainer />
+      <HeaderContainer location={location} />
       {/* placeholder under 6rem high fixed position header */}
       <div style={{ height: '6rem' }} />
       <Sidebar location={location} />

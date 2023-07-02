@@ -1,7 +1,6 @@
 import styled from 'styled-components';
-import { ListContainerStyleProps } from './list.types';
 
-export const ListContainer = styled.ul<ListContainerStyleProps>`
+export const ListContainer = styled.ul`
   ${() => ({
     listStyleType: 'none',
     padding: '0px',

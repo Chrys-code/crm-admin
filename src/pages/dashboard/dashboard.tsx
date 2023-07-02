@@ -1,28 +1,43 @@
-import React, { FC, PropsWithChildren } from 'react';
-import { DashboardContainer } from './dashboard.styles';
-import { DashboardProps } from './dashboard.types';
+import React, { FC } from 'react';
+import Section from '../../layout/section';
+import Subheader from '../../components/subheader/subheader';
 
-const Dashboard: FC<
-  DashboardProps
-> = ({}: PropsWithChildren<DashboardProps>): JSX.Element => {
+const Dashboard: FC = (): JSX.Element => {
   return (
-    <DashboardContainer>
-      <span>HELLO THIS IS YOUR DASHBOARD</span>
-      <ul>
-        <li>
-          <span>Quick access</span>
-        </li>
-        <li>
-          <span>Updates</span>
-        </li>
-        <li>
-          <span>eg. added a new feature we want to share</span>
-        </li>
-        <li>
-          <span>Selected modules</span>
-        </li>
-      </ul>
-    </DashboardContainer>
+    <>
+      <Subheader
+        label={'Hello, [nickname]'}
+        subtext={'What do we do today?'}
+      ></Subheader>
+
+      <Section withPadding={false}>
+        <Section type="div" withBorder>
+          <span>SMTH</span>
+          <span>SMTH</span>
+          <span>SMTH</span>
+        </Section>
+        <Section type="div" withBorder>
+          <span>SMTH</span>
+          <span>SMTH</span>
+          <span>SMTH</span>
+        </Section>
+        <Section type="div" withBorder>
+          <span>SMTH</span>
+          <span>SMTH</span>
+          <span>SMTH</span>
+        </Section>
+      </Section>
+      <Section withBorder>
+        <span>SMTH</span>
+        <span>SMTH</span>
+        <span>SMTH</span>
+      </Section>
+      <Section label="This is a label" withBorder>
+        <span>SMTH</span>
+        <span>SMTH</span>
+        <span>SMTH</span>
+      </Section>
+    </>
   );
 };
 export default Dashboard;
