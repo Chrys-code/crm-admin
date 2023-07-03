@@ -1,8 +1,23 @@
 import { Location } from 'react-router-dom';
+import EmailTemplatesHeaderActions from './components/emailTemplatesHeaderActions';
+import CreateEmailHeaderActions from './components/createEmailHeaderActions';
+
+export const renderActionButton = (location: Location): JSX.Element => {
+  if (location.pathname === '/email-templates') {
+    return <EmailTemplatesHeaderActions />;
+  }
+
+  if (location.pathname === '/email-templates/create-template') {
+    return <CreateEmailHeaderActions />;
+  }
+
+  return <></>;
+};
 
 export function generateTitleFromWindowLocation(
   windowLocation: Location
 ): string {
+  if (windowLocation.pathname === '/') return '';
   let locationPathname: string = windowLocation.pathname;
 
   const purifiedPanthnameEnding: string =

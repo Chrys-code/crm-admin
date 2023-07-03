@@ -10,6 +10,7 @@ export const colors = {
   lightGreen: '#00948540',
   yellow: '#E9CA27',
   magenta: '#BC45DA',
+  black: '#000000',
 };
 
 export const background = {
@@ -22,6 +23,7 @@ export const accent = {
   red: colors.red,
   green: colors.green,
   lightGreen: colors.lightGreen,
+  black: colors.black,
 };
 
 export const icon = {

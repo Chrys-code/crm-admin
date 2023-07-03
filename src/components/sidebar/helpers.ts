@@ -1,5 +1,5 @@
 import { ListItemType } from '../base/list/list.types';
-import { emailingRoutes, baseRoutes, profileRoutes } from './routeLinks';
+import { baseRoutes, profileRoutes } from './routeLinks';
 
 export const getMenuOptionsByLocation = (
   windowLocation: any
@@ -14,8 +14,8 @@ export const getMenuOptionsByLocation = (
     return baseRoutes;
   }
 
-  if (location.startsWith('/emailing')) {
-    return [...baseRoutes, ...emailingRoutes];
+  if (location.startsWith('/email-templates')) {
+    return baseRoutes;
   }
 
   if (location.startsWith('/profile')) {

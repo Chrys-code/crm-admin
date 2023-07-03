@@ -9,8 +9,9 @@ export const ButtonContainer = styled.button<ButtonContainerStyleProps>`
     color: color,
     fontSize: theme.font.size.regular,
     fontWeight: theme.font.weight.bold,
-    background: fillColor,
-    padding: `${theme.space(1)} ${theme.space(2)}`,
+    background: theme.colors.colors[fillColor],
+    padding: `${theme.space(1.5)} ${theme.space(3)}`,
     borderRadius: theme.borders.wrapper,
+    cursor: 'pointer',
   })}
 `;

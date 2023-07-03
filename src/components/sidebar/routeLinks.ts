@@ -3,13 +3,13 @@ export const baseRoutes = [
     label: 'Home',
     action: '/dashboard',
   },
+  // {
+  //   label: 'Users',
+  //   action: '/users',
+  // },
   {
-    label: 'Users',
-    action: '/users',
-  },
-  {
-    label: 'Emailing',
-    action: '/emailing',
+    label: 'Email Templates',
+    action: '/email-templates',
   },
 ];
 
@@ -24,13 +24,13 @@ export const profileRoutes = [
   },
   {
     label: 'Subscription',
-    action: '/subscription',
+    action: '/profile/subscription',
   },
 ];
 
-export const emailingRoutes = [
-  {
-    label: 'Templates',
-    action: '/templates',
-  },
-];
+// export const emailingRoutes = [
+//   {
+//     label: 'Create Template',
+//     action: '/email-templates/create-template',
+//   },
+// ];

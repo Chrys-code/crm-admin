@@ -36,12 +36,19 @@ const GlobalStyles = styled.createGlobalStyle`
       monospace;
   }
 
-  div:not(#root) {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
+  // div:not(#root, [class*='ace_']) {
+  //   display: flex;
+  //   flex-direction: column;
+  //   align-items: center;
+  //   justify-content: center;
+  // }
+
+  // #code_editor_preview > div {
+  //   display: block !important;
+  //   flex-direction: unset;
+  //   align-items: unset;
+  //   justify-content: unset;
+  // }
 
   button {
     border: none;

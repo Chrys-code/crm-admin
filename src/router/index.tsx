@@ -5,9 +5,11 @@ import ErrorPage from '../pages/error';
 import PageLayout from '../layout/page/pageLayout';
 // import Users from '../pages/users';
 import Profile from '../pages/profile';
-import Emailing from '../pages/emailing';
+import Emails from '../pages/emails';
 import Subscription from '../pages/subscription/subscription';
 import Users from '../pages/users';
+import CreateEmailTemplate from '../features/emails/createEmailTemplate/createEmailTemplate';
+import EmailTemplates from '../features/emails/emailTemplates/emailTemplates';
 
 export const router = createBrowserRouter([
   {
@@ -33,9 +35,21 @@ export const router = createBrowserRouter([
         ],
       },
       {
-        path: '/emailing',
-        element: <Emailing />,
+        path: '/email-templates',
+        element: <Emails />,
         errorElement: <ErrorPage />,
+        children: [
+          {
+            path: '/email-templates',
+            element: <EmailTemplates />,
+            errorElement: <ErrorPage />,
+          },
+          {
+            path: '/email-templates/create-template',
+            element: <CreateEmailTemplate />,
+            errorElement: <ErrorPage />,
+          },
+        ],
       },
       {
         path: '/profile',
@@ -43,7 +57,7 @@ export const router = createBrowserRouter([
         errorElement: <ErrorPage />,
       },
       {
-        path: '/subscription',
+        path: '/profile/subscription',
         element: <Subscription />,
         errorElement: <ErrorPage />,
       },

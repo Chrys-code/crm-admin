@@ -19,7 +19,10 @@ export const HeaderContainer = styled.header<HeaderContainerStyleProps>`
 
 export const UserInfoWrapper = styled.div`
   ${() => ({
-    flexDirection: 'row !important',
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'flex-end',
   })}
 `;
 

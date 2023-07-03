@@ -12,6 +12,10 @@ export const PageContent = styled.main<PageLayoutContainerStyleProps>`
     paddingLeft: `calc(20% + ${theme.space(4)})`,
   })};
 
+  > *:first-child {
+    margin-bottom: ${(p) => p.theme.space(2)};
+  }
+
   > * {
     margin: ${(p) => p.theme.space(2)} 0px;
   }
