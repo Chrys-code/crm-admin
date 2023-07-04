@@ -1,4 +1,10 @@
-import React, { ChangeEvent, FC, PropsWithChildren, useState } from 'react';
+import React, {
+  ChangeEvent,
+  FC,
+  PropsWithChildren,
+  useEffect,
+  useState,
+} from 'react';
 import Button from '../../../base/button';
 import { toast } from 'react-toastify';
 import {
@@ -8,25 +14,39 @@ import {
   Selector,
 } from './createEmailHeaderActions.styles';
 import { NavigateFunction, useNavigate } from 'react-router-dom';
-import { useDebounce } from '../../../../utils/hooks';
 import { CreateEmailHeaderActionsProps } from './createEmailHeaderActions.types';
+import Popup from '../../../modal/popup';
+import theme from '../../../../utils/theme/theme';
 
 const CreateEmailHeaderActions: FC<CreateEmailHeaderActionsProps> = ({
+  groups,
   createEmail,
   setCurrentEmailGroup,
   setCurrentEmailTitle,
 }: PropsWithChildren<CreateEmailHeaderActionsProps>): JSX.Element => {
   const navigate: NavigateFunction = useNavigate();
 
+  const [addGroupModalIsOpen, setAddGroupModalIsOpen] =
+    useState<boolean>(false);
+
   const [title, setTitle] = useState<string | null>(null);
+  const [group, setGroup] = useState<string | null>(null);
 
-  useDebounce(setCurrentEmailTitle(title), 600, [title]);
+  useEffect((): (() => void) | undefined => {
+    if (group !== 'add') return;
+    setAddGroupModalIsOpen(true);
+    return (): void => {};
+  }, [group]);
 
-  const updateEmailGroup = (group: string): void => {
-    setCurrentEmailGroup(group);
+  const renderOptions = (groups: string[]): JSX.Element[] => {
+    return groups.map(
+      (group: string): JSX.Element => <option value={group}>{group}</option>
+    );
   };
 
   const handleSave = (): void => {
+    setCurrentEmailGroup(group);
+    setCurrentEmailTitle(title);
     createEmail(null);
     toast.success('Template Saved!');
     navigate('/email-templates');
@@ -54,16 +74,30 @@ const CreateEmailHeaderActions: FC<CreateEmailHeaderActionsProps> = ({
         <Selector
           id="template-group"
           name="template-group"
+          required
           onChange={(e: ChangeEvent<HTMLSelectElement>) =>
-            updateEmailGroup(e.target.value)
+            setGroup(e.target.value)
           }
         >
-          <option value={'Signups'}>Signups</option>
-          <option value={'Reminders'}>Reminders</option>
+          {}
+          <option value="" disabled selected>
+            Select Group
+          </option>
+          {renderOptions(groups)}
+          <option value="add">New...</option>
         </Selector>
       </InputWrapper>
 
       <Button onClick={handleSave}>Save</Button>
+
+      <Popup
+        title="Create a new group"
+        isOpen={addGroupModalIsOpen}
+        onClose={() => setAddGroupModalIsOpen(false)}
+        action={() => console.log('action')}
+      >
+        <input style={{ padding: theme.space(1), textAlign: 'center' }} />
+      </Popup>
     </>
   );
 };

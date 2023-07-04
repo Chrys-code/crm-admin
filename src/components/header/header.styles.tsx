@@ -13,7 +13,7 @@ export const HeaderContainer = styled.header<HeaderContainerStyleProps>`
     backgroundColor: theme.colors.background.white,
     padding: theme.space(3),
     boxShadow: `0px 0px 6px 0px ${theme.colors.accent.green}`,
-    zIndex: 100,
+    zIndex: 90,
   })}
 `;
 

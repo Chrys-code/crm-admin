@@ -36,24 +36,25 @@ const GlobalStyles = styled.createGlobalStyle`
       monospace;
   }
 
-  // div:not(#root, [class*='ace_']) {
-  //   display: flex;
-  //   flex-direction: column;
-  //   align-items: center;
-  //   justify-content: center;
-  // }
-
-  // #code_editor_preview > div {
-  //   display: block !important;
-  //   flex-direction: unset;
-  //   align-items: unset;
-  //   justify-content: unset;
-  // }
-
   button {
     border: none;
     border-radius: none;
     background: none;
+  }
+
+  .ReactModalPortal {
+    position: absolute;
+    z-index: 100;
+  }
+
+  .ReactModal__Overlay {
+    background: transparent;
+    background-color: none;
+  }
+
+  .ReactModal__Content {
+    width: 400px;
+    min-height: 250px;
   }
 `;
 
