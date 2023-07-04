@@ -44,10 +44,10 @@ const Table: FC<TableProps> = ({
   return (
     <TableContainer>
       <thead>
-        <th style={{ width: '30%' }}>Name</th>
-        <th style={{ width: '20%' }}>Group</th>
-        <th style={{ width: '10%' }}></th>
-        <th style={{ width: '10%' }}></th>
+        <td style={{ width: '30%' }}>Name</td>
+        <td style={{ width: '20%' }}>Group</td>
+        <td style={{ width: '10%' }}></td>
+        <td style={{ width: '10%' }}></td>
       </thead>
       <tbody>{renderRow(data)}</tbody>
     </TableContainer>

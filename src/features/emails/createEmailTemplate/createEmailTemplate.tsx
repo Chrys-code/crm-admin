@@ -1,23 +1,45 @@
-import React, { FC, MutableRefObject, useEffect, useRef } from 'react';
+import React, {
+  FC,
+  MutableRefObject,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import Section from '../../../layout/section/section';
 import AceEditor from 'react-ace';
 import 'ace-builds/src-noconflict/mode-java';
 import 'ace-builds/src-noconflict/theme-github';
 import 'ace-builds/src-noconflict/ext-language_tools';
-import { CodeEditorContainer } from './createEmailTemplate.styles';
+import {
+  CodeEditorContainer,
+  PreviewFrame,
+} from './createEmailTemplate.styles';
 import ReactDOM from 'react-dom';
 import { toast } from 'react-toastify';
 import { editorInitialvalue } from './helper';
+import { useDebounce } from '../../../utils/hooks';
+import { useDispatch } from 'react-redux';
+import { actions as emailActions } from '../../../store/reducers/email';
 
 const CreateEmailTemplate: FC = (): JSX.Element => {
+  const dispatch = useDispatch();
   const previewRef: MutableRefObject<null> = useRef(null);
 
+  const [templateValue, setTemplateValue] =
+    useState<string>(editorInitialvalue);
+
+  useDebounce(
+    () => dispatch(emailActions.setCurrentEmailTemplate(templateValue)),
+    600,
+    [templateValue]
+  );
+
   useEffect((): (() => void) => {
-    onChange(editorInitialvalue);
+    onEditorChange(editorInitialvalue);
     return (): void => {};
   }, []);
 
-  function onChange(newValue: string): void {
+  function onEditorChange(newValue: string): void {
     if (newValue.includes('<script')) {
       toast.error('Remove script from template');
       return;
@@ -32,39 +54,22 @@ const CreateEmailTemplate: FC = (): JSX.Element => {
     if (editorPreviewFrame) {
       // @ts-ignore
       editorPreviewFrame.contentWindow.document.body.innerHTML = newValue;
+      setTemplateValue(newValue);
     }
   }
 
   return (
     <>
       <Section withBorder>
-        <div
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            minHeight: '60vh',
-            width: '49%',
-          }}
-        >
-          <iframe
-            id="code_editor_preview"
-            ref={previewRef}
-            style={{
-              border: 'none',
-              width: '100%',
-              alignSelf: 'flex-start',
-              flexGrow: 1,
-            }}
-          ></iframe>
-        </div>
+        <PreviewFrame id="code_editor_preview" ref={previewRef}></PreviewFrame>
         <CodeEditorContainer>
           <AceEditor
             mode="html"
             theme="xcode"
-            onChange={onChange}
+            onChange={onEditorChange}
             name="code_editor"
             fontSize={14}
-            value={editorInitialvalue}
+            value={templateValue}
             showPrintMargin={true}
             showGutter={true}
             highlightActiveLine={true}

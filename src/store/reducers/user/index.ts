@@ -1,2 +1,1 @@
-export { default } from './user.slice';
-export { actions } from './user.slice';
+export { default, actions } from './user.slice';

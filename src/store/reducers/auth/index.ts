@@ -1,2 +1,1 @@
-export { default } from './auth.slice';
-export { actions } from './auth.slice';
+export { default, actions } from './auth.slice';

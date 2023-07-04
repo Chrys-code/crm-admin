@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const CodeEditorContainer = styled.div`
-  ${({ theme }) => ({
+  ${() => ({
     width: '49%',
   })};
 
@@ -10,4 +10,13 @@ export const CodeEditorContainer = styled.div`
   *::after {
     display: block !important;
   }
+`;
+
+export const PreviewFrame = styled.iframe`
+  ${() => ({
+    border: 'none',
+    alignSelf: 'flex-start',
+    minHeight: '60vh',
+    width: '49%',
+  })};
 `;

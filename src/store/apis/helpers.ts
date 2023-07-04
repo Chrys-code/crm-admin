@@ -29,20 +29,18 @@ const errorHandler = (response: Response): void => {
   }
 };
 
-
 export const request = async ({
   url,
   method,
   body,
-  accessToken,
-}: 
-RequestProps): Promise<any> => {
+}: RequestProps): Promise<any> => {
   try {
+    const accessToken: string | null = localStorage.getItem('accessToken');
     const response: Response = await fetch(url, {
       method,
       headers: {
-        "Accept": "application/json",
-        "Content-Type": "application/json",
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
         Authorization: `Bearer ${accessToken}`,
       },
       body: JSON.stringify(body),

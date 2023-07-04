@@ -7,14 +7,10 @@ import Button from '../../components/base/button/button';
 const Users: FC<
   UsersProps
 > = ({}: PropsWithChildren<UsersProps>): JSX.Element => {
-  
   const getUser = async () => {
-    const tokn = process.env.REACT_APP_BEARER
+    const tokn = process.env.REACT_APP_BEARER;
     if (tokn) {
-      const response: any = await getUserRequest(
-        '6496152e2dbd63f4bf2facdf',
-        tokn
-      );
+      const response: any = await getUserRequest('6496152e2dbd63f4bf2facdf');
       console.log(response);
     }
   };

@@ -2,8 +2,7 @@ import { generateReauthenticatingThunkApiAction } from '../../helpers';
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { RootState, AppDispatch } from '../../store';
 import { getUserRequest, User } from '../../apis/user';
-
-export type UserState = User;
+import { UserState } from './user.types';
 
 const initialState: UserState = {
   _id: '',
@@ -24,13 +23,10 @@ const getUser = createAsyncThunk<
   }
 >(
   'user/getUser',
-  generateReauthenticatingThunkApiAction(
-    async (state: RootState): Promise<User> => {
-      const { accessToken } = state.auth;
-      const user: User = await getUserRequest('', '');
-      return user;
-    }
-  )
+  generateReauthenticatingThunkApiAction(async (): Promise<User> => {
+    const user: User = await getUserRequest('');
+    return user;
+  })
 );
 
 const user = createSlice({

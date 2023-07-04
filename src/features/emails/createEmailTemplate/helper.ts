@@ -3,6 +3,9 @@ export const editorInitialvalue = `<html>
   * {
     box-sizing: border-box;
   }
+  body {
+    margin: 0px;
+  }
   header {
     padding: 16px;
     width: 100%;
