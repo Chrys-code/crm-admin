@@ -20,9 +20,11 @@ import theme from '../../../../utils/theme/theme';
 
 const CreateEmailHeaderActions: FC<CreateEmailHeaderActionsProps> = ({
   groups,
+  extendGroups,
   createEmail,
   setCurrentEmailGroup,
   setCurrentEmailTitle,
+  clearCurrentEmail,
 }: PropsWithChildren<CreateEmailHeaderActionsProps>): JSX.Element => {
   const navigate: NavigateFunction = useNavigate();
 
@@ -31,6 +33,8 @@ const CreateEmailHeaderActions: FC<CreateEmailHeaderActionsProps> = ({
 
   const [title, setTitle] = useState<string | null>(null);
   const [group, setGroup] = useState<string | null>(null);
+
+  const [newGroup, setNewGroup] = useState<string | null>(null);
 
   useEffect((): (() => void) | undefined => {
     if (group !== 'add') return;
@@ -50,6 +54,7 @@ const CreateEmailHeaderActions: FC<CreateEmailHeaderActionsProps> = ({
     createEmail(null);
     toast.success('Template Saved!');
     navigate('/email-templates');
+    clearCurrentEmail();
   };
 
   return (
@@ -94,9 +99,17 @@ const CreateEmailHeaderActions: FC<CreateEmailHeaderActionsProps> = ({
         title="Create a new group"
         isOpen={addGroupModalIsOpen}
         onClose={() => setAddGroupModalIsOpen(false)}
-        action={() => console.log('action')}
+        action={() => {
+          extendGroups(newGroup);
+          setAddGroupModalIsOpen(false);
+        }}
       >
-        <input style={{ padding: theme.space(1), textAlign: 'center' }} />
+        <input
+          onChange={(e: ChangeEvent<HTMLInputElement>) =>
+            setNewGroup(e.target.value)
+          }
+          style={{ padding: theme.space(1), textAlign: 'center' }}
+        />
       </Popup>
     </>
   );

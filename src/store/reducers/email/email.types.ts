@@ -2,6 +2,7 @@ import { EmailSerializedById } from '../../apis/email/email.types';
 
 export interface EmailState {
   emails: EmailSerializedById;
+  groups: string[];
   currentEmail: StoreEmail;
 }
 

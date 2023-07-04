@@ -6,9 +6,9 @@ import { request } from '../helpers';
 
 const url = 'http://localhost:8080/email';
 
-export const createEmailsRequest = async (newEmail: NewEmail): Promise<Email> =>
+export const createEmailRequest = async (newEmail: NewEmail): Promise<Email> =>
   await request({
-    url: `${url}/all`,
+    url: url,
     method: 'POST',
     body: newEmail,
   });

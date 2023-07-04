@@ -2,19 +2,25 @@ import CreateEmailHeaderActions from './createEmailHeaderActions';
 import { actions as emailActions } from '../../../../store/reducers/email';
 import { connect } from 'react-redux';
 import { RootState } from '../../../../store/store';
-import { getGroups } from './helpers';
 
 const mapState = (state: RootState) => {
   return {
-    groups: getGroups(state.email.emails),
+    groups: state.email.groups,
   };
 };
 
-const { createEmail, setCurrentEmailGroup, setCurrentEmailTitle } =
-  emailActions;
-
-export default connect(mapState, {
+const {
   createEmail,
   setCurrentEmailGroup,
   setCurrentEmailTitle,
+  extendGroups,
+  clearCurrentEmail,
+} = emailActions;
+
+export default connect(mapState, {
+  extendGroups,
+  createEmail,
+  setCurrentEmailGroup,
+  setCurrentEmailTitle,
+  clearCurrentEmail,
 })(CreateEmailHeaderActions);
