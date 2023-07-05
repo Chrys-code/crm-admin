@@ -4,16 +4,25 @@ import { TableProps } from './table.types';
 import Button from '../base/button/button';
 import { NavigateFunction, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { Email } from '../../store/apis/email/email.types';
+import { deleteEmailRequest } from '../../store/apis/email';
 
 const Table: FC<TableProps> = ({
-  data,
+  emails,
+  getEmails,
 }: PropsWithChildren<TableProps>): JSX.Element => {
   const navigate: NavigateFunction = useNavigate();
 
-  const renderRow = (data: any): JSX.Element => {
-    return data.map(
-      (dataRow: any): JSX.Element => (
-        <tr>
+  const deleteEmail = async (id: string) => {
+    await deleteEmailRequest(id);
+    await getEmails(null);
+    toast.success('Template Deleted');
+  };
+
+  const renderRow = (emails: Email[]): JSX.Element[] => {
+    return emails.map(
+      (dataRow: Email): JSX.Element => (
+        <tr key={dataRow._id}>
           <td>{dataRow.title}</td>
           <td>{dataRow.group}</td>
           <td>
@@ -21,7 +30,9 @@ const Table: FC<TableProps> = ({
               color="black"
               fillColor="lightGreen"
               onClick={() =>
-                navigate(`/email-templates/create-template?id=${'123'}`)
+                navigate(`/email-templates/update-template/id=${dataRow._id}`, {
+                  state: { id: dataRow._id },
+                })
               }
             >
               Edit
@@ -31,7 +42,7 @@ const Table: FC<TableProps> = ({
             <Button
               color="black"
               fillColor="lightGreen"
-              onClick={() => toast.success('Template Deleted')}
+              onClick={() => deleteEmail(dataRow._id)}
             >
               Delete
             </Button>
@@ -49,7 +60,7 @@ const Table: FC<TableProps> = ({
         <td style={{ width: '10%' }}></td>
         <td style={{ width: '10%' }}></td>
       </thead>
-      <tbody>{renderRow(data)}</tbody>
+      <tbody>{renderRow(emails)}</tbody>
     </TableContainer>
   );
 };

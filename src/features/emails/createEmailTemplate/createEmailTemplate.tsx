@@ -20,11 +20,21 @@ import { editorInitialvalue } from './helper';
 import { useDebounce } from '../../../utils/hooks';
 import { useDispatch } from 'react-redux';
 import { actions as emailActions } from '../../../store/reducers/email';
+import { useParams } from 'react-router-dom';
+import { RootState, useAppSelector } from '../../../store/store';
+import { Email } from '../../../store/apis/email/email.types';
+import { EmailState } from '../../../store/reducers/email/email.types';
 
 const CreateEmailTemplate: FC = (): JSX.Element => {
+  const { emailsById } = useAppSelector(
+    (state: RootState): EmailState => state.email
+  );
+  const { id } = useParams();
+
   const dispatch = useDispatch();
   const previewRef: MutableRefObject<null> = useRef(null);
 
+  const [selectedEmail, setSelectedEmail] = useState<Email | null>(null);
   const [templateValue, setTemplateValue] =
     useState<string>(editorInitialvalue);
 
@@ -34,10 +44,21 @@ const CreateEmailTemplate: FC = (): JSX.Element => {
     [templateValue]
   );
 
-  useEffect((): (() => void) => {
+  useEffect((): (() => void) | undefined => {
+    if (!id || !emailsById) return;
+    const objId: string = id.split('=')[1];
+    setSelectedEmail(emailsById[objId]);
+    return (): void => {};
+  }, [id, emailsById]);
+
+  useEffect((): (() => void) | undefined => {
+    if (selectedEmail) {
+      onEditorChange(selectedEmail.template);
+      return;
+    }
     onEditorChange(editorInitialvalue);
     return (): void => {};
-  }, []);
+  }, [selectedEmail]);
 
   function onEditorChange(newValue: string): void {
     if (newValue.includes('<script')) {

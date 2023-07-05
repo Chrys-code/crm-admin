@@ -1,12 +1,21 @@
-import { generateReauthenticatingThunkApiAction } from '../../helpers';
+import {
+  generateReauthenticatingThunkApiAction,
+  getGroups,
+} from '../../helpers';
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { RootState, AppDispatch } from '../../store';
-import { createEmailRequest, getEmailsRequest } from '../../apis/email';
+import {
+  createEmailRequest,
+  getEmailsRequest,
+  updateEmailRequest,
+} from '../../apis/email';
 import { EmailState } from './email.types';
-import { Email, EmailSerializedById } from '../../apis/email/email.types';
+import { Email } from '../../apis/email/email.types';
+import { serializeEmails } from '../../serializers';
 
 const initialState: EmailState = {
-  emails: {},
+  emails: [],
+  emailsById: {},
   groups: [],
   currentEmail: {
     _id: null,
@@ -17,7 +26,7 @@ const initialState: EmailState = {
 };
 
 const getEmails = createAsyncThunk<
-  EmailSerializedById,
+  Email[],
   null,
   {
     dispatch: AppDispatch;
@@ -25,13 +34,11 @@ const getEmails = createAsyncThunk<
   }
 >(
   'email/getEmails',
-  generateReauthenticatingThunkApiAction(
-    async (): Promise<EmailSerializedById> => {
-      const emails: EmailSerializedById = await getEmailsRequest();
+  generateReauthenticatingThunkApiAction(async (): Promise<Email[]> => {
+    const emails: Email[] = await getEmailsRequest();
 
-      return emails;
-    }
-  )
+    return emails;
+  })
 );
 
 const createEmail = createAsyncThunk<
@@ -50,11 +57,33 @@ const createEmail = createAsyncThunk<
     }
   )
 );
+const updateEmail = createAsyncThunk<
+  Email,
+  null,
+  {
+    dispatch: AppDispatch;
+    state: RootState;
+  }
+>(
+  'email/updateEmail',
+  generateReauthenticatingThunkApiAction(
+    async (state: RootState): Promise<Email> => {
+      const email: Email = await updateEmailRequest({
+        id: state.email.currentEmail._id as string,
+        payload: state.email.currentEmail as Email,
+      });
+      return email;
+    }
+  )
+);
 
 const email = createSlice({
   name: 'email',
   initialState,
   reducers: {
+    setCurrentEmailId(state, { payload }) {
+      state.currentEmail._id = payload;
+    },
     setCurrentEmailTitle(state, { payload }) {
       state.currentEmail.title = payload;
     },
@@ -76,18 +105,13 @@ const email = createSlice({
   },
   extraReducers: (builder): void => {
     builder.addCase(getEmails.fulfilled, (state, { payload }): void => {
-      let groups: string[] = [];
-
-      for (const key in payload) {
-        if (!groups.includes(payload[key].group))
-          groups.push(payload[key].group);
-      }
-
-      state.groups = groups;
+      state.groups = getGroups(payload);
       state.emails = payload;
+      state.emailsById = serializeEmails(payload);
     });
     builder.addCase(createEmail.fulfilled, (state, { payload }): void => {
-      state.emails[payload._id] = payload;
+      state.emails = [...state.emails, payload];
+      state.emailsById[payload._id] = payload;
     });
   },
 });
@@ -98,4 +122,5 @@ export const actions = {
   ...email.actions,
   getEmails,
   createEmail,
+  updateEmail,
 };

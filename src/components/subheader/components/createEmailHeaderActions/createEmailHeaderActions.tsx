@@ -13,20 +13,33 @@ import {
   InputWrapper,
   Selector,
 } from './createEmailHeaderActions.styles';
-import { NavigateFunction, useNavigate } from 'react-router-dom';
+import { NavigateFunction, useNavigate, useParams } from 'react-router-dom';
 import { CreateEmailHeaderActionsProps } from './createEmailHeaderActions.types';
 import Popup from '../../../modal/popup';
 import theme from '../../../../utils/theme/theme';
+import { RootState, useAppSelector } from '../../../../store/store';
+import { EmailState } from '../../../../store/reducers/email/email.types';
+import { Email } from '../../../../store/apis/email/email.types';
 
 const CreateEmailHeaderActions: FC<CreateEmailHeaderActionsProps> = ({
   groups,
   extendGroups,
+  updateEmail,
   createEmail,
+  getEmails,
   setCurrentEmailGroup,
   setCurrentEmailTitle,
+  setCurrentEmailId,
   clearCurrentEmail,
 }: PropsWithChildren<CreateEmailHeaderActionsProps>): JSX.Element => {
+  const { emailsById } = useAppSelector(
+    (state: RootState): EmailState => state.email
+  );
+  const { id } = useParams();
+
   const navigate: NavigateFunction = useNavigate();
+
+  const [selectedEmail, setSelectedEmail] = useState<Email | null>(null);
 
   const [addGroupModalIsOpen, setAddGroupModalIsOpen] =
     useState<boolean>(false);
@@ -37,25 +50,74 @@ const CreateEmailHeaderActions: FC<CreateEmailHeaderActionsProps> = ({
   const [newGroup, setNewGroup] = useState<string | null>(null);
 
   useEffect((): (() => void) | undefined => {
-    if (group !== 'add') return;
+    if (!id || !emailsById) return;
+    const objId: string = id.split('=')[1];
+    setSelectedEmail(emailsById[objId]);
+    return (): void => {};
+  }, [id, emailsById]);
+
+  useEffect((): (() => void) | undefined => {
+    if (selectedEmail) {
+      setGroup(selectedEmail.group);
+      setTitle(selectedEmail.title);
+      setCurrentEmailTitle(selectedEmail.title);
+      setCurrentEmailGroup(selectedEmail.group);
+      setCurrentEmailId(selectedEmail._id);
+    }
+
+    return (): void => {};
+  }, [selectedEmail]);
+
+  useEffect((): (() => void) | undefined => {
+    if (group !== 'create_new_group_gx7') return;
     setAddGroupModalIsOpen(true);
     return (): void => {};
   }, [group]);
 
-  const renderOptions = (groups: string[]): JSX.Element[] => {
-    return groups.map(
-      (group: string): JSX.Element => <option value={group}>{group}</option>
+  const renderSelector = (
+    groups: string[],
+    selectedGroup?: string
+  ): JSX.Element => {
+    return (
+      <Selector
+        id="template-group"
+        name="template-group"
+        required
+        onChange={(e: ChangeEvent<HTMLSelectElement>) =>
+          setGroup(e.target.value)
+        }
+      >
+        {}
+        <option value="" disabled selected>
+          Select Group
+        </option>
+        {groups.map(
+          (group: string): JSX.Element => (
+            <option value={group} selected={selectedGroup === group}>
+              {group}
+            </option>
+          )
+        )}
+        <option value="create_new_group_gx7">New...</option>
+      </Selector>
     );
   };
 
-  const handleSave = (): void => {
+  const handleSave = async (): Promise<void> => {
     setCurrentEmailGroup(group);
     setCurrentEmailTitle(title);
-    createEmail(null);
+    if (selectedEmail?._id) {
+      await updateEmail();
+    } else {
+      await createEmail(null);
+    }
+    await getEmails();
     toast.success('Template Saved!');
     navigate('/email-templates');
     clearCurrentEmail();
   };
+
+  const buttonText: string = id ? 'Update' : 'Save';
 
   return (
     <>
@@ -67,6 +129,7 @@ const CreateEmailHeaderActions: FC<CreateEmailHeaderActionsProps> = ({
           onChange={(e: ChangeEvent<HTMLInputElement>): void =>
             setTitle(e.target.value)
           }
+          value={title ? title : ''}
           id="template-title"
           name="template-title"
         />
@@ -76,24 +139,10 @@ const CreateEmailHeaderActions: FC<CreateEmailHeaderActionsProps> = ({
         <InputLabel style={{ width: '100%' }} htmlFor="template-group">
           Group:
         </InputLabel>
-        <Selector
-          id="template-group"
-          name="template-group"
-          required
-          onChange={(e: ChangeEvent<HTMLSelectElement>) =>
-            setGroup(e.target.value)
-          }
-        >
-          {}
-          <option value="" disabled selected>
-            Select Group
-          </option>
-          {renderOptions(groups)}
-          <option value="add">New...</option>
-        </Selector>
+        {renderSelector(groups, selectedEmail?.group)}
       </InputWrapper>
 
-      <Button onClick={handleSave}>Save</Button>
+      <Button onClick={handleSave}>{buttonText}</Button>
 
       <Popup
         title="Create a new group"

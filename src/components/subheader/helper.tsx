@@ -7,7 +7,11 @@ export const renderActionButton = (location: Location): JSX.Element => {
     return <EmailTemplatesHeaderActions />;
   }
 
-  if (location.pathname === '/email-templates/create-template') {
+  if (location.pathname.includes('email-templates/create-template')) {
+    return <CreateEmailHeaderActions />;
+  }
+
+  if (location.pathname.includes('email-templates/update-template')) {
     return <CreateEmailHeaderActions />;
   }
 
@@ -48,6 +52,9 @@ function getLastPieceOfPurifiedPathname(pathname: string) {
 
   if (pathname.includes('?'))
     pathname = pathname.substring(0, pathname.indexOf('?'));
+
+  if (pathname.includes('id='))
+    pathname = pathname.substring(0, pathname.lastIndexOf('/'));
 
   return pathname.substring(pathname.lastIndexOf('/') + 1, pathname.length);
 }

@@ -1,26 +1,19 @@
-import { EmailSerializedById } from '../../store/apis/email';
 import { Email } from '../../store/apis/email/email.types';
 
-export const adaptEmails = (
-  emails: EmailSerializedById
-): { [key: string]: Email[] } => {
-  let data = {};
+export const adaptEmailsbyGroup = (
+  emails: Email[]
+): { [key: string]: Email[] } | null => {
+  if (!emails.length) return null;
 
-  for (const key in emails) {
-    // @ts-ignore
-    if (!data[emails[key].group]) {
-      // @ts-ignore
-      data[emails[key].group] = [];
+  let emailsByGroup: { [key: string]: Email[] } = {};
+
+  emails.forEach((email: Email) => {
+    if (!emailsByGroup[email.group]) {
+      emailsByGroup[email.group] = [];
     }
 
-    // @ts-ignore
-    data[emails[key].group].push({
-      _id: emails[key]._id,
-      title: emails[key].title,
-      group: emails[key].group,
-      template: emails[key].template,
-    });
-  }
+    emailsByGroup[email.group].push(email);
+  });
 
-  return data;
+  return emailsByGroup;
 };

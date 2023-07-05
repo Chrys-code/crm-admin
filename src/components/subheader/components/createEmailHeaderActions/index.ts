@@ -11,8 +11,11 @@ const mapState = (state: RootState) => {
 
 const {
   createEmail,
+  updateEmail,
+  getEmails,
   setCurrentEmailGroup,
   setCurrentEmailTitle,
+  setCurrentEmailId,
   extendGroups,
   clearCurrentEmail,
 } = emailActions;
@@ -20,7 +23,10 @@ const {
 export default connect(mapState, {
   extendGroups,
   createEmail,
+  updateEmail,
+  getEmails,
   setCurrentEmailGroup,
   setCurrentEmailTitle,
+  setCurrentEmailId,
   clearCurrentEmail,
 })(CreateEmailHeaderActions);

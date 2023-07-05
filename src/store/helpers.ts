@@ -1,3 +1,4 @@
+import { Email } from './apis/email/email.types';
 import { actions as authActions } from './reducers/auth';
 
 const { refreshToken } = authActions;
@@ -15,4 +16,14 @@ export const generateReauthenticatingThunkApiAction = (action: any) => {
       }
     }
   };
+};
+
+export const getGroups = (payload: Email[]): string[] => {
+  let groups: string[] = [];
+
+  for (const key in payload) {
+    if (!groups.includes(payload[key].group)) groups.push(payload[key].group);
+  }
+
+  return groups;
 };

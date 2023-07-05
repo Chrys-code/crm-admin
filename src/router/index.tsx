@@ -9,7 +9,7 @@ import Emails from '../pages/emails';
 import Subscription from '../pages/subscription/subscription';
 import Users from '../pages/users';
 import CreateEmailTemplate from '../features/emails/createEmailTemplate/createEmailTemplate';
-import EmailTemplatesContainer from '../containers/emailTemplates/emailTemplatesContainer';
+import EmailTemplatesContainer from '../containers/emailTemplates';
 
 export const router = createBrowserRouter([
   {
@@ -45,7 +45,12 @@ export const router = createBrowserRouter([
             errorElement: <ErrorPage />,
           },
           {
-            path: '/email-templates/create-template',
+            path: '/email-templates/update-template/:id',
+            element: <CreateEmailTemplate />,
+            errorElement: <ErrorPage />,
+          },
+          {
+            path: '/email-templates/create-template/',
             element: <CreateEmailTemplate />,
             errorElement: <ErrorPage />,
           },

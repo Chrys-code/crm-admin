@@ -1,4 +1,4 @@
-import { Email, EmailSerializedById, NewEmail } from './email.types';
+import { Email, NewEmail } from './email.types';
 import { request } from '../helpers';
 
 // const baseUrl: string | undefined = process.env.API_BASE_URL;
@@ -13,18 +13,26 @@ export const createEmailRequest = async (newEmail: NewEmail): Promise<Email> =>
     body: newEmail,
   });
 
-export const getEmailsRequest = async (): Promise<EmailSerializedById> =>
+export const getEmailRequest = async (id: string): Promise<Email> =>
+  await request({
+    url: `${url}/${id}`,
+    method: 'GET',
+  });
+
+export const getEmailsRequest = async (): Promise<Email[]> =>
   await request({
     url: `${url}/all`,
     method: 'GET',
   });
 
-export const updateEmailRequest = async (
-  payload: EmailSerializedById
-): Promise<EmailSerializedById> =>
-  await request({ url: url, method: 'PATCH', body: payload });
+export const updateEmailRequest = async ({
+  id,
+  payload,
+}: {
+  id: string;
+  payload: Email;
+}): Promise<Email> =>
+  await request({ url: `${url}?id=${id}`, method: 'PATCH', body: payload });
 
-export const deleteEmailRequest = async (
-  payload: string
-): Promise<EmailSerializedById> =>
+export const deleteEmailRequest = async (payload: string): Promise<any> =>
   await request({ url: `${url}?id=${payload}`, method: 'DELETE' });
