@@ -9,6 +9,11 @@ export const TableContainer = styled.table<TableContainerStyleProps>`
 
   > thead {
     text-align: left;
+    > tr {
+      > th {
+        padding: ${(p) => p.theme.space(0.5)} ${(p) => p.theme.space(1)};
+      }
+    }
   }
 
   > tbody {
@@ -27,7 +32,7 @@ export const TableContainer = styled.table<TableContainerStyleProps>`
       }
 
       > td {
-        padding: ${(p) => p.theme.space(0.5)} 0px;
+        padding: ${(p) => p.theme.space(0.5)} ${(p) => p.theme.space(1)};
       }
     }
   }
