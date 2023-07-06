@@ -14,9 +14,16 @@ export const TableContainer = styled.table<TableContainerStyleProps>`
   > tbody {
     > tr {
       text-align: left;
+      border-radius: ${(p) => p.theme.borders.wrapper};
 
       &:hover {
         background-color: ${(p) => p.theme.colors.accent.lightGreen};
+        background: linear-gradient(
+          to right,
+          ${(p) => p.theme.colors.accent.lightGreen},
+          white 80%
+        );
+        border-radius: ${(p) => p.theme.borders.wrapper};
       }
 
       > td {

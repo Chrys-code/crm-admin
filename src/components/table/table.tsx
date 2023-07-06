@@ -56,10 +56,10 @@ const Table: FC<TableProps> = ({
     <TableContainer>
       <thead>
         <tr>
-          <th style={{ width: '30%' }}>Name</th>
-          <th style={{ width: '20%' }}>Group</th>
-          <th style={{ width: '10%' }}></th>
-          <th style={{ width: '10%' }}></th>
+          <th style={{ width: '50%' }}>Name</th>
+          <th style={{ width: '48%' }}>Group</th>
+          <th style={{ width: '1%' }}></th>
+          <th style={{ width: '1%' }}></th>
         </tr>
       </thead>
       <tbody>{renderRow(emails)}</tbody>
