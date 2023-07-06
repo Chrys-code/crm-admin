@@ -12,7 +12,7 @@ const Button: FC<ButtonProps> = ({
     <ButtonContainer
       onClick={(): void => onClick()}
       color={color}
-      fillColor={fillColor}
+      $fillColor={fillColor}
     >
       {children}
     </ButtonContainer>

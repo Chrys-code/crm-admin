@@ -74,26 +74,24 @@ const CreateEmailHeaderActions: FC<CreateEmailHeaderActionsProps> = ({
     return (): void => {};
   }, [group]);
 
-  const renderSelector = (
-    groups: string[],
-    selectedGroup?: string
-  ): JSX.Element => {
+  const renderSelector = (groups: string[]): JSX.Element => {
     return (
       <Selector
         id="template-group"
         name="template-group"
         required
+        value={group || ''}
         onChange={(e: ChangeEvent<HTMLSelectElement>) =>
           setGroup(e.target.value)
         }
       >
         {}
-        <option value="" disabled selected>
+        <option value="" disabled>
           Select Group
         </option>
         {groups.map(
           (group: string): JSX.Element => (
-            <option value={group} selected={selectedGroup === group}>
+            <option key={group} value={group}>
               {group}
             </option>
           )
@@ -139,7 +137,7 @@ const CreateEmailHeaderActions: FC<CreateEmailHeaderActionsProps> = ({
         <InputLabel style={{ width: '100%' }} htmlFor="template-group">
           Group:
         </InputLabel>
-        {renderSelector(groups, selectedEmail?.group)}
+        {renderSelector(groups)}
       </InputWrapper>
 
       <Button onClick={handleSave}>{buttonText}</Button>

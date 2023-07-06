@@ -8,12 +8,16 @@ export const serializeEmail = (email: Email): EmailSerializedById => {
   };
 };
 
-export const serializeEmails = (emails: Email[]): EmailSerializedById => {
+export const serializeEmails = (
+  emails: Email[] | null
+): EmailSerializedById => {
   let serializedEmails: EmailSerializedById = {};
 
-  emails.forEach(
-    (email: Email) => (serializedEmails[email._id] = { ...email })
-  );
+  if (emails && emails.length) {
+    emails.forEach(
+      (email: Email) => (serializedEmails[email._id] = { ...email })
+    );
+  }
 
   return serializedEmails;
 };

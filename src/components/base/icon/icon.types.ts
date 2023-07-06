@@ -15,5 +15,5 @@ export interface IconContainerStyleProps {
   width: string;
   height: string;
   backgroundColor?: IconColor;
-  rounded?: boolean;
+  $rounded?: boolean;
 }

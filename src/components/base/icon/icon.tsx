@@ -1,4 +1,4 @@
-import React, { FC, PropsWithChildren, SVGProps } from 'react';
+import React, { FC, PropsWithChildren } from 'react';
 import { IconContainer } from './icon.styles';
 import { IconProps } from './icon.types';
 import { useDynamicSVGImport } from '../../../utils/hooks';
@@ -34,7 +34,7 @@ const Icon = ({
         width={backgroundSize}
         height={backgroundSize}
         color={backgroundColor}
-        rounded={rounded}
+        $rounded={rounded}
       >
         <SvgIcon
           width={iconSize}

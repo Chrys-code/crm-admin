@@ -15,7 +15,7 @@ const Button: FC<ButtonProps> = ({
   };
 
   return (
-    <ListItem onClick={(): void => handleClick()} isActive={false}>
+    <ListItem onClick={(): void => handleClick()} $isActive={false}>
       <ListButton ref={linkRef}>{item.label}</ListButton>
     </ListItem>
   );

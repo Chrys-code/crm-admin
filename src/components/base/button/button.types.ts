@@ -10,5 +10,5 @@ export interface ButtonProps {
 
 export interface ButtonContainerStyleProps {
   color: ThemeColors;
-  fillColor: AccentColor;
+  $fillColor: AccentColor;
 }

@@ -1,19 +1,19 @@
 import { Email } from '../../store/apis/email/email.types';
 
 export const adaptEmailsbyGroup = (
-  emails: Email[]
+  emails: Email[] | null
 ): { [key: string]: Email[] } | null => {
-  if (!emails.length) return null;
-
   let emailsByGroup: { [key: string]: Email[] } = {};
 
-  emails.forEach((email: Email) => {
-    if (!emailsByGroup[email.group]) {
-      emailsByGroup[email.group] = [];
-    }
+  if (emails && emails.length) {
+    emails.forEach((email: Email) => {
+      if (!emailsByGroup[email.group]) {
+        emailsByGroup[email.group] = [];
+      }
 
-    emailsByGroup[email.group].push(email);
-  });
+      emailsByGroup[email.group].push(email);
+    });
+  }
 
   return emailsByGroup;
 };

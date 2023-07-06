@@ -9,14 +9,14 @@ export const ListContainer = styled.ul`
   })}
 `;
 
-export const ListItem = styled.li<{ isActive: boolean }>`
-  ${({ theme, isActive }) => ({
+export const ListItem = styled.li<{ $isActive: boolean }>`
+  ${({ theme, $isActive }) => ({
     width: '100%',
     padding: theme.space(2),
     margin: `${theme.space(1)} 0px`,
     cursor: 'pointer',
     borderRadius: theme.borders.wrapper,
-    backgroundColor: isActive ? theme.colors.accent.lightGreen : 'transparent',
+    backgroundColor: $isActive ? theme.colors.accent.lightGreen : 'transparent',
   })};
 
   &:hover {

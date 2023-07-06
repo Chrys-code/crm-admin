@@ -2,22 +2,26 @@ import styled from 'styled-components';
 import { SectionContainerStyleProps } from './section.types';
 
 export const SectionContainer = styled.section<SectionContainerStyleProps>`
-  ${({ theme, withBorder, withLabel, withPadding }) => ({
+  ${({ theme, $withBorder, $withLabel, $withPadding }) => ({
     position: 'relative',
     width: '100%',
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    padding: withPadding ? theme.space(4) : '0px',
-    paddingTop: withLabel ? theme.space(10) : theme.space(4),
-    backgroundColor: withBorder ? theme.colors.background.white : 'transparent',
-    border: withBorder ? `1px solid ${theme.colors.accent.lightGreen}` : 'none',
+    padding: $withPadding ? theme.space(4) : '0px',
+    paddingTop: $withLabel ? theme.space(10) : theme.space(4),
+    backgroundColor: $withBorder
+      ? theme.colors.background.white
+      : 'transparent',
+    border: $withBorder
+      ? `1px solid ${theme.colors.accent.lightGreen}`
+      : 'none',
     borderRadius: theme.borders.componentContainer,
   })};
 
   ${(p) =>
-    p.isMultipleChildNode &&
+    p.$isMultipleChildNode &&
     p.type === 'section' &&
     `
   > * {
@@ -34,7 +38,7 @@ export const SectionContainer = styled.section<SectionContainerStyleProps>`
   `}
 `;
 export const SectionDivContainer = styled.div<SectionContainerStyleProps>`
-  ${({ theme, withBorder, withLabel }) => ({
+  ${({ theme, $withBorder, $withLabel }) => ({
     position: 'relative',
     width: '100%',
     display: 'flex',
@@ -42,14 +46,18 @@ export const SectionDivContainer = styled.div<SectionContainerStyleProps>`
     alignItems: 'center',
     justifyContent: 'space-between',
     padding: theme.space(4),
-    paddingTop: withLabel ? theme.space(10) : theme.space(4),
-    backgroundColor: withBorder ? theme.colors.background.white : 'transparent',
-    border: withBorder ? `1px solid ${theme.colors.accent.lightGreen}` : 'none',
+    paddingTop: $withLabel ? theme.space(10) : theme.space(4),
+    backgroundColor: $withBorder
+      ? theme.colors.background.white
+      : 'transparent',
+    border: $withBorder
+      ? `1px solid ${theme.colors.accent.lightGreen}`
+      : 'none',
     borderRadius: theme.borders.componentContainer,
   })};
 
   ${(p) =>
-    p.isMultipleChildNode &&
+    p.$isMultipleChildNode &&
     p.type === 'section' &&
     `
   > * {

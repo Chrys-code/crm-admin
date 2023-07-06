@@ -13,7 +13,7 @@ const Table: FC<TableProps> = ({
 }: PropsWithChildren<TableProps>): JSX.Element => {
   const navigate: NavigateFunction = useNavigate();
 
-  const deleteEmail = async (id: string) => {
+  const deleteEmail = async (id: string): Promise<void> => {
     await deleteEmailRequest(id);
     await getEmails(null);
     toast.success('Template Deleted');
@@ -55,10 +55,12 @@ const Table: FC<TableProps> = ({
   return (
     <TableContainer>
       <thead>
-        <td style={{ width: '30%' }}>Name</td>
-        <td style={{ width: '20%' }}>Group</td>
-        <td style={{ width: '10%' }}></td>
-        <td style={{ width: '10%' }}></td>
+        <tr>
+          <th style={{ width: '30%' }}>Name</th>
+          <th style={{ width: '20%' }}>Group</th>
+          <th style={{ width: '10%' }}></th>
+          <th style={{ width: '10%' }}></th>
+        </tr>
       </thead>
       <tbody>{renderRow(emails)}</tbody>
     </TableContainer>

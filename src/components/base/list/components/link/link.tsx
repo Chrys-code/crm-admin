@@ -20,7 +20,7 @@ const Link: FC<LinkProps> = ({
 
   return (
     <>
-      <ListItem onClick={(): void => handleClick()} isActive={isActive}>
+      <ListItem onClick={(): void => handleClick()} $isActive={isActive}>
         <RouterLink ref={linkRef} to={`${item.action}`}>
           <ListItemLabel>{item.label}</ListItemLabel>
         </RouterLink>

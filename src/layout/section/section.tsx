@@ -21,10 +21,10 @@ const Section: FC<SectionProps> = ({
   if (type === 'div') {
     return (
       <SectionDivContainer
-        withBorder={withBorder}
-        withLabel={withLabel}
-        withPadding={withPadding}
-        isMultipleChildNode={isMultipleChildNode}
+        $withBorder={withBorder}
+        $withLabel={withLabel}
+        $withPadding={withPadding}
+        $isMultipleChildNode={isMultipleChildNode}
         type={type}
       >
         {label && <SectionLabel>{label}</SectionLabel>}
@@ -35,10 +35,10 @@ const Section: FC<SectionProps> = ({
 
   return (
     <SectionContainer
-      withBorder={withBorder}
-      withLabel={withLabel}
-      withPadding={withPadding}
-      isMultipleChildNode={isMultipleChildNode}
+      $withBorder={withBorder}
+      $withLabel={withLabel}
+      $withPadding={withPadding}
+      $isMultipleChildNode={isMultipleChildNode}
       type={type}
     >
       {label && <SectionLabel>{label}</SectionLabel>}

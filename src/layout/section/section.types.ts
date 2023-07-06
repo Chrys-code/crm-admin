@@ -10,9 +10,9 @@ export interface SectionProps {
   children: ReactNode;
 }
 export interface SectionContainerStyleProps {
-  withPadding?: boolean;
-  withBorder?: boolean;
-  isMultipleChildNode: boolean;
+  $withPadding?: boolean;
+  $withBorder?: boolean;
+  $isMultipleChildNode: boolean;
   type: SectionType;
-  withLabel: boolean;
+  $withLabel: boolean;
 }

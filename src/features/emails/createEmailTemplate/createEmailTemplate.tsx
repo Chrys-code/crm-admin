@@ -20,12 +20,13 @@ import { editorInitialvalue } from './helper';
 import { useDebounce } from '../../../utils/hooks';
 import { useDispatch } from 'react-redux';
 import { actions as emailActions } from '../../../store/reducers/email';
-import { useParams } from 'react-router-dom';
+import { NavigateFunction, useNavigate, useParams } from 'react-router-dom';
 import { RootState, useAppSelector } from '../../../store/store';
 import { Email } from '../../../store/apis/email/email.types';
 import { EmailState } from '../../../store/reducers/email/email.types';
 
 const CreateEmailTemplate: FC = (): JSX.Element => {
+  const navigate: NavigateFunction = useNavigate();
   const { emailsById } = useAppSelector(
     (state: RootState): EmailState => state.email
   );
@@ -43,6 +44,11 @@ const CreateEmailTemplate: FC = (): JSX.Element => {
     600,
     [templateValue]
   );
+
+  useEffect((): (() => void) => {
+    if (!Object.keys(emailsById).length) navigate('/email-templates/');
+    return (): void => {};
+  }, [emailsById]);
 
   useEffect((): (() => void) | undefined => {
     if (!id || !emailsById) return;

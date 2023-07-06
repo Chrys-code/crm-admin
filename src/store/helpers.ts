@@ -18,11 +18,13 @@ export const generateReauthenticatingThunkApiAction = (action: any) => {
   };
 };
 
-export const getGroups = (payload: Email[]): string[] => {
+export const getGroups = (payload: Email[] | null): string[] => {
   let groups: string[] = [];
 
-  for (const key in payload) {
-    if (!groups.includes(payload[key].group)) groups.push(payload[key].group);
+  if (payload && payload.length) {
+    for (const key in payload) {
+      if (!groups.includes(payload[key].group)) groups.push(payload[key].group);
+    }
   }
 
   return groups;
