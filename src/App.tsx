@@ -6,9 +6,13 @@ import OrganisationRegisterModal from './features/organisation/components/regist
 function App({
   getUser,
   getOrganisation,
+  userOrganisation,
+  setCurrentEmailOrganisation,
 }: {
   getUser: any;
   getOrganisation: any;
+  userOrganisation: any;
+  setCurrentEmailOrganisation: any;
 }): JSX.Element {
   const acToken = process.env.REACT_APP_BEARER;
 
@@ -30,6 +34,14 @@ function App({
 
     return (): void => {};
   }, []);
+
+  useEffect((): (() => void) => {
+    if (setCurrentEmailOrganisation) {
+      setCurrentEmailOrganisation(userOrganisation);
+    }
+
+    return (): void => {};
+  }, [userOrganisation]);
 
   const getAuthUser = async () => {
     const localStorageUserKey =
