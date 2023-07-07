@@ -35,10 +35,12 @@ const getEmails = createAsyncThunk<
   }
 >(
   'email/getEmails',
-  generateReauthenticatingThunkApiAction(async (): Promise<Email[] | null> => {
-    const emails: Email[] = await getEmailsRequest();
-    return emails;
-  })
+  generateReauthenticatingThunkApiAction(
+    async (state: RootState): Promise<Email[] | null> => {
+      const emails: Email[] = await getEmailsRequest(state.user.organisation);
+      return emails;
+    }
+  )
 );
 
 const createEmail = createAsyncThunk<

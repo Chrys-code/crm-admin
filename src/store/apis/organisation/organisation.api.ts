@@ -19,7 +19,7 @@ export const getOrganisationRequest = async (
   id: string
 ): Promise<Organisation> =>
   await request({
-    url: `${url}/${id}`,
+    url: `${url}?id=${id}`,
     method: 'GET',
   });
 

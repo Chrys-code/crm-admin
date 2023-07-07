@@ -19,9 +19,9 @@ export const getEmailRequest = async (id: string): Promise<Email> =>
     method: 'GET',
   });
 
-export const getEmailsRequest = async (): Promise<Email[]> =>
+export const getEmailsRequest = async (payload: string): Promise<Email[]> =>
   await request({
-    url: `${url}/all`,
+    url: `${url}/by_org_id?id=${payload}`,
     method: 'GET',
   });
 
