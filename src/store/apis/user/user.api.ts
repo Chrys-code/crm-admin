@@ -12,8 +12,11 @@ export const getUserRequest = async (id: string): Promise<User> =>
     method: 'GET',
   });
 
-export const updateUserRequest = async (payload: User): Promise<User> =>
-  await request({ url: url, method: 'PATCH', body: payload });
+export const updateUserRequest = async (
+  id: string,
+  payload: User
+): Promise<User> =>
+  await request({ url: `${url}?id=${id}`, method: 'PATCH', body: payload });
 
 export const deleteUserRequest = async (_id: string): Promise<User> =>
   await request({ url: url, method: 'DELETE' });

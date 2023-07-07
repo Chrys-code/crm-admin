@@ -1,11 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
 
-import { authReducer, userReducer, emailReducer } from './reducers';
+import { authReducer, orgReducer, userReducer, emailReducer } from './reducers';
 import { TypedUseSelectorHook, useSelector } from 'react-redux';
 
 const store = configureStore({
   reducer: {
     auth: authReducer,
+    org: orgReducer,
     user: userReducer,
     email: emailReducer,
   },

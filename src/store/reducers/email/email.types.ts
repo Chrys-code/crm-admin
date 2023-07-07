@@ -12,4 +12,5 @@ export interface StoreEmail {
   title: string | null;
   group: string | null;
   template: string | null;
+  organisation: string | null;
 }

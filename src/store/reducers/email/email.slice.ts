@@ -22,6 +22,7 @@ const initialState: EmailState = {
     title: null,
     group: null,
     template: null,
+    organisation: null,
   },
 };
 
@@ -82,6 +83,9 @@ const email = createSlice({
   reducers: {
     setCurrentEmailId(state, { payload }) {
       state.currentEmail._id = payload;
+    },
+    setCurrentEmailOrganisation(state, { payload }) {
+      state.currentEmail.organisation = payload;
     },
     setCurrentEmailTitle(state, { payload }) {
       state.currentEmail.title = payload;

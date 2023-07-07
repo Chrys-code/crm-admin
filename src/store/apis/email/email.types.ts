@@ -3,12 +3,14 @@ export interface Email {
   title: string;
   group: string;
   template: string;
+  organisation: string;
 }
 
 export interface NewEmail {
   title: string | null;
   group: string | null;
   template: string | null;
+  organisation: string | null;
 }
 
 export interface EmailSerializedById {
@@ -17,5 +19,6 @@ export interface EmailSerializedById {
     title: string;
     group: string;
     template: string;
+    organisation: string;
   };
 }

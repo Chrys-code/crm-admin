@@ -6,7 +6,7 @@ import { Auth0Provider } from '@auth0/auth0-react';
 import { Provider } from 'react-redux';
 import store from './store/store';
 import theme from './utils/theme';
-import App from './App';
+import AppWrapper from './AppWrapper';
 import GlobalStyles from './styles/globalStyles';
 
 const root = ReactDOM.createRoot(
@@ -27,7 +27,7 @@ root.render(
           }}
         >
           <GlobalStyles />
-          <App />
+          <AppWrapper />
         </Auth0Provider>
       </ThemeProvider>
     </Provider>
