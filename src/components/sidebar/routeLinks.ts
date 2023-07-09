@@ -3,10 +3,10 @@ export const baseRoutes = [
     label: 'Home',
     action: '/dashboard',
   },
-  // {
-  //   label: 'Users',
-  //   action: '/users',
-  // },
+  {
+    label: 'Users',
+    action: '/users',
+  },
   {
     label: 'Email Templates',
     action: '/email-templates',

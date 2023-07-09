@@ -1,7 +1,9 @@
-import { Email } from '../../store/apis/email/email.types';
+export type TableType = 'email' | 'user';
 
 export interface TableProps {
-  emails: Email[];
+  tableType: TableType;
+  dataRows: any[];
   getEmails: any;
 }
+
 export interface TableContainerStyleProps {}

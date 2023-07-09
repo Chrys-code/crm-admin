@@ -88,7 +88,9 @@ const organisation = createSlice({
   reducers: {},
   extraReducers: (builder): void => {
     builder.addCase(getOrganisation.fulfilled, (state, { payload }): void => {
-      state = payload;
+      state._id = payload._id;
+      state.title = payload.title;
+      state.users = payload.users;
     });
     builder.addCase(
       createOrganisation.fulfilled,

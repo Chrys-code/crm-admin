@@ -18,7 +18,7 @@ const EmailTemplates: FC<EmailTemplatesProps> = ({
     for (const key in emails) {
       elementsToRender.push(
         <Section key={key} label={key} withBorder withPadding>
-          <Table emails={emails[key]} />
+          <Table tableType="email" dataRows={emails[key]} />
         </Section>
       );
     }

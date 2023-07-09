@@ -21,5 +21,5 @@ export const updateUserRequest = async (
 export const deleteUserRequest = async (_id: string): Promise<User> =>
   await request({ url: url, method: 'DELETE' });
 
-export const getUsersRequest = async (): Promise<User> =>
-  await request({ url: `${url}/all`, method: 'GET' });
+export const getUsersRequest = async (id: string): Promise<User[]> =>
+  await request({ url: `${url}/by-org-id?id=${id}`, method: 'GET' });

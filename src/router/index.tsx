@@ -3,13 +3,14 @@ import Dashboard from '../pages/dashboard';
 import Login from '../pages/login';
 import ErrorPage from '../pages/error';
 import PageLayout from '../layout/page/pageLayout';
-// import Users from '../pages/users';
 import Profile from '../pages/profile';
 import Emails from '../pages/emails';
 import Subscription from '../pages/subscription/subscription';
 import Users from '../pages/users';
 import CreateEmailTemplate from '../features/emails/createEmailTemplate/createEmailTemplate';
 import EmailTemplatesContainer from '../containers/emailTemplates';
+import UserList from '../features/users/userList';
+import CreateUser from '../features/users/createUser/createUser';
 
 export const router = createBrowserRouter([
   {
@@ -27,11 +28,21 @@ export const router = createBrowserRouter([
         element: <Users />,
         errorElement: <ErrorPage />,
         children: [
-          // {
-          //   path: '/users/:userId',
-          //   element: <User />,
-          //   errorElement: <ErrorPage />,
-          // },
+          {
+            path: '/users',
+            element: <UserList />,
+            errorElement: <ErrorPage />,
+          },
+          {
+            path: '/users/update-user/:id',
+            element: <CreateUser />,
+            errorElement: <ErrorPage />,
+          },
+          {
+            path: '/users/create-user/',
+            element: <CreateUser />,
+            errorElement: <ErrorPage />,
+          },
         ],
       },
       {

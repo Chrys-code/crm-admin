@@ -1,68 +1,54 @@
 import React, { FC, PropsWithChildren } from 'react';
 import { TableContainer } from './table.styles';
-import { TableProps } from './table.types';
-import Button from '../base/button/button';
+import { TableProps, TableType } from './table.types';
 import { NavigateFunction, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { Email } from '../../store/apis/email/email.types';
 import { deleteEmailRequest } from '../../store/apis/email';
+import {
+  renderEmailHeaders,
+  renderEmailRow,
+  renderUserHeaders,
+  renderUserRow,
+} from './helpers';
 
 const Table: FC<TableProps> = ({
-  emails,
+  tableType,
+  dataRows,
   getEmails,
 }: PropsWithChildren<TableProps>): JSX.Element => {
   const navigate: NavigateFunction = useNavigate();
 
-  const deleteEmail = async (id: string): Promise<void> => {
-    await deleteEmailRequest(id);
-    await getEmails(null);
-    toast.success('Template Deleted');
-  };
+  const deleteRow = async (id: string, tableType: TableType): Promise<void> => {
+    if (tableType === 'email') {
+      await deleteEmailRequest(id);
+      await getEmails(null);
+      toast.success('Template Deleted');
+      return;
+    }
 
-  const renderRow = (emails: Email[]): JSX.Element[] => {
-    return emails.map(
-      (dataRow: Email): JSX.Element => (
-        <tr key={dataRow._id}>
-          <td>{dataRow.title}</td>
-          <td>{dataRow.group}</td>
-          <td>
-            <Button
-              color="black"
-              fillColor="lightGreen"
-              onClick={() =>
-                navigate(`/email-templates/update-template/id=${dataRow._id}`, {
-                  state: { id: dataRow._id },
-                })
-              }
-            >
-              Edit
-            </Button>
-          </td>
-          <td>
-            <Button
-              color="black"
-              fillColor="lightGreen"
-              onClick={() => deleteEmail(dataRow._id)}
-            >
-              Delete
-            </Button>
-          </td>
-        </tr>
-      )
-    );
+    if (tableType === 'user') {
+      return;
+    }
   };
 
   return (
     <TableContainer>
-      <thead>
-        <tr>
-          <th style={{ width: '50%' }}>Name</th>
-          <th style={{ width: '48%' }}>Group</th>
-          <th style={{ width: '1%' }}></th>
-          <th style={{ width: '1%' }}></th>
-        </tr>
-      </thead>
-      <tbody>{renderRow(emails)}</tbody>
+      {tableType === 'email' && (
+        <>
+          <thead>{renderEmailHeaders()}</thead>
+          <tbody>
+            {renderEmailRow(dataRows, navigate, deleteRow, tableType)}
+          </tbody>
+        </>
+      )}
+      {tableType === 'user' && (
+        <>
+          <thead>{renderUserHeaders()}</thead>
+          <tbody>
+            {renderUserRow(dataRows, navigate, deleteRow, tableType)}
+          </tbody>
+        </>
+      )}
     </TableContainer>
   );
 };

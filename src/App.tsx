@@ -27,6 +27,7 @@ function App({
 
       if (user.payload.organisation === 'None') {
         setOrganisationRegisterModalIsOpen(true);
+        return;
       }
 
       await getOrganisation({ payload: user.payload.organisation });

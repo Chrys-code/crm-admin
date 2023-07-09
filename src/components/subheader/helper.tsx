@@ -1,18 +1,30 @@
 import { Location } from 'react-router-dom';
 import EmailTemplatesHeaderActions from './components/emailTemplatesHeaderActions';
 import CreateEmailHeaderActions from './components/createEmailHeaderActions';
+import CreateUserHeaderActions from './components/createUserHeaderActions/createUserHeaderActions';
+import UsersHeaderActions from './components/usersHeaderActions/usersHeaderActions';
 
 export const renderActionButton = (location: Location): JSX.Element => {
   if (location.pathname === '/email-templates') {
     return <EmailTemplatesHeaderActions />;
   }
 
-  if (location.pathname.includes('email-templates/create-template')) {
+  if (
+    location.pathname.includes('/email-templates/create-template') ||
+    location.pathname.includes('/email-templates/update-template')
+  ) {
     return <CreateEmailHeaderActions />;
   }
 
-  if (location.pathname.includes('email-templates/update-template')) {
-    return <CreateEmailHeaderActions />;
+  if (location.pathname === '/users') {
+    return <UsersHeaderActions />;
+  }
+
+  if (
+    location.pathname.includes('/users/create-user') ||
+    location.pathname.includes('/users/update-user')
+  ) {
+    return <CreateUserHeaderActions />;
   }
 
   return <></>;

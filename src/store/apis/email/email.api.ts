@@ -21,7 +21,7 @@ export const getEmailRequest = async (id: string): Promise<Email> =>
 
 export const getEmailsRequest = async (payload: string): Promise<Email[]> =>
   await request({
-    url: `${url}/by_org_id?id=${payload}`,
+    url: `${url}/by-org-id?id=${payload}`,
     method: 'GET',
   });
 
