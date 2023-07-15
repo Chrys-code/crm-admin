@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import Button from '../../../base/button';
+import Button from '../../../../base/button';
 import { NavigateFunction, useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 

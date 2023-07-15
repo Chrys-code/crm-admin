@@ -1,7 +1,7 @@
 import CreateEmailHeaderActions from './createEmailHeaderActions';
-import { actions as emailActions } from '../../../../store/reducers/email';
+import { actions as emailActions } from '../../../../../store/reducers/email';
 import { connect } from 'react-redux';
-import { RootState } from '../../../../store/store';
+import { RootState } from '../../../../../store/store';
 
 const mapState = (state: RootState) => {
   return {

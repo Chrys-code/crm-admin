@@ -1,10 +1,14 @@
 import { Location } from 'react-router-dom';
-import EmailTemplatesHeaderActions from './components/emailTemplatesHeaderActions';
-import CreateEmailHeaderActions from './components/createEmailHeaderActions';
-import CreateUserHeaderActions from './components/createUserHeaderActions/createUserHeaderActions';
-import UsersHeaderActions from './components/usersHeaderActions/usersHeaderActions';
+import EmailTemplatesHeaderActions from './components/emailHeaderActions/emailTemplatesHeaderActions';
+import CreateEmailHeaderActions from './components/emailHeaderActions/createEmailHeaderActions';
+import CreateUserHeaderActions from './components/userHeaderActions/createUserHeaderActions/createUserHeaderActions';
+import UsersHeaderActions from './components/userHeaderActions/usersHeaderActions/usersHeaderActions';
+import CreateTrackerHeaderActions from './components/analyticsHeaderActions/createTrackerHeaderActions/createTrackerHeaderActions';
+import TrackerHeaderActions from './components/analyticsHeaderActions/trackerHeaderActions/trackerHeaderActions';
 
 export const renderActionButton = (location: Location): JSX.Element => {
+
+  // Email Templates Header Actions START
   if (location.pathname === '/email-templates') {
     return <EmailTemplatesHeaderActions />;
   }
@@ -15,7 +19,12 @@ export const renderActionButton = (location: Location): JSX.Element => {
   ) {
     return <CreateEmailHeaderActions />;
   }
+  // Email Templates Header Actions END
 
+
+
+
+  // Users Header Actions START
   if (location.pathname === '/users') {
     return <UsersHeaderActions />;
   }
@@ -26,6 +35,24 @@ export const renderActionButton = (location: Location): JSX.Element => {
   ) {
     return <CreateUserHeaderActions />;
   }
+  // Users Header Actions END
+
+
+
+
+  // Analytics Header Actions START
+  if (
+    location.pathname.includes('/analytics')) {
+    return <TrackerHeaderActions />;
+  }
+
+  if (
+    location.pathname.includes('/analytics/create-tracker') ||
+    location.pathname.includes('/users/update-tracker')
+  ) {
+    return <CreateTrackerHeaderActions />;
+  }
+  // Users Header Actions END
 
   return <></>;
 };

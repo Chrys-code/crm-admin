@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import Button from '../../../base/button';
+import Button from '../../../../base/button';
 import { NavigateFunction, useNavigate } from 'react-router-dom';
 
 const EmailTemplatesHeaderActions: FC = (): JSX.Element => {

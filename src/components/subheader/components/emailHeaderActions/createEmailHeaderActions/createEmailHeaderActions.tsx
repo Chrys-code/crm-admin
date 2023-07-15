@@ -5,7 +5,7 @@ import React, {
   useEffect,
   useState,
 } from 'react';
-import Button from '../../../base/button';
+import Button from '../../../../base/button';
 import { toast } from 'react-toastify';
 import {
   Input,
@@ -15,11 +15,11 @@ import {
 } from './createEmailHeaderActions.styles';
 import { NavigateFunction, useNavigate, useParams } from 'react-router-dom';
 import { CreateEmailHeaderActionsProps } from './createEmailHeaderActions.types';
-import Popup from '../../../modal/popup';
-import theme from '../../../../utils/theme/theme';
-import { RootState, useAppSelector } from '../../../../store/store';
-import { EmailState } from '../../../../store/reducers/email/email.types';
-import { Email } from '../../../../store/apis/email/email.types';
+import Popup from '../../../../modal/popup';
+import theme from '../../../../../utils/theme/theme';
+import { RootState, useAppSelector } from '../../../../../store/store';
+import { EmailState } from '../../../../../store/reducers/email/email.types';
+import { Email } from '../../../../../store/apis/email/email.types';
 
 const CreateEmailHeaderActions: FC<CreateEmailHeaderActionsProps> = ({
   groups,
@@ -53,7 +53,7 @@ const CreateEmailHeaderActions: FC<CreateEmailHeaderActionsProps> = ({
     if (!id || !emailsById) return;
     const objId: string = id.split('=')[1];
     setSelectedEmail(emailsById[objId]);
-    return (): void => {};
+    return (): void => { };
   }, [id, emailsById]);
 
   useEffect((): (() => void) | undefined => {
@@ -65,13 +65,13 @@ const CreateEmailHeaderActions: FC<CreateEmailHeaderActionsProps> = ({
       setCurrentEmailId(selectedEmail._id);
     }
 
-    return (): void => {};
+    return (): void => { };
   }, [selectedEmail]);
 
   useEffect((): (() => void) | undefined => {
     if (group !== 'create_new_group_gx7') return;
     setAddGroupModalIsOpen(true);
-    return (): void => {};
+    return (): void => { };
   }, [group]);
 
   const renderSelector = (groups: string[]): JSX.Element => {
@@ -85,7 +85,7 @@ const CreateEmailHeaderActions: FC<CreateEmailHeaderActionsProps> = ({
           setGroup(e.target.value)
         }
       >
-        {}
+        { }
         <option value="" disabled>
           Select Group
         </option>
