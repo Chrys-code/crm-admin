@@ -17,9 +17,10 @@ const EmailTemplatesContainer: FC<EmailTemplatesContainerProps> = ({
     (state: RootState): UserState => state.user
   );
 
-  useEffect((): (() => void) => {
+  useEffect((): (() => void) | undefined => {
+    if (!organisation) return;
     loadEmailsToStore();
-    return (): void => {};
+    return (): void => { };
   }, [organisation]);
 
   const loadEmailsToStore = async (): Promise<void> => {

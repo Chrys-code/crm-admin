@@ -2,8 +2,9 @@ import React, { FC, PropsWithChildren } from 'react'
 import { TrackerSelector, TrackerTitle, TrackersContainer } from './trackers.styles'
 import { TrackersProps } from './trackers.types'
 import Section from '../../../layout/section/section'
+import Table from '../../../components/table'
 
-const Trackers: FC<TrackersProps> = ({ }: PropsWithChildren<TrackersProps>): JSX.Element => {
+const Trackers: FC<TrackersProps> = ({ trackers }: PropsWithChildren<TrackersProps>): JSX.Element => {
 
     return (
         <TrackersContainer>
@@ -21,9 +22,13 @@ const Trackers: FC<TrackersProps> = ({ }: PropsWithChildren<TrackersProps>): JSX
                     <TrackerSelector type='checkbox' />
                 </Section>
             </Section>
-            <Section label='Trackers' withPadding withBorder>
 
+
+            <Section label="Trackers" withBorder withPadding>
+                <Table tableType="tracker" dataRows={trackers} />
             </Section>
+
+
         </TrackersContainer>
     )
 }

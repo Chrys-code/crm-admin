@@ -9,12 +9,14 @@ import Subscription from '../pages/subscription/subscription';
 import Users from '../pages/users';
 import CreateEmailTemplate from '../features/emails/createEmailTemplate/createEmailTemplate';
 
-import EmailTemplatesContainer from '../containers/emailTemplates';
+// Containers (above feature pages)
 import UsersContainer from '../containers/users';
+import EmailTemplatesContainer from '../containers/emailTemplates';
+import TrackersContainer from '../containers/trackers';
 
+// Pages (acts as guards over feature pages)
 import CreateUser from '../features/users/createUser/createUser';
 import Analytics from '../pages/analytics/analytics';
-import Trackers from '../features/analytics/trackers';
 
 export const router = createBrowserRouter([
   {
@@ -79,7 +81,7 @@ export const router = createBrowserRouter([
         children: [
           {
             path: '/analytics',
-            element: <Trackers />,
+            element: <TrackersContainer />,
             errorElement: <ErrorPage />
           },
           {

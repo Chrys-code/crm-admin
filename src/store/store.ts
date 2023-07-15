@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 
-import { authReducer, orgReducer, userReducer, emailReducer } from './reducers';
+import { authReducer, orgReducer, userReducer, emailReducer, trackerReducer } from './reducers';
 import { TypedUseSelectorHook, useSelector } from 'react-redux';
 
 const store = configureStore({
@@ -9,6 +9,7 @@ const store = configureStore({
     org: orgReducer,
     user: userReducer,
     email: emailReducer,
+    tracker: trackerReducer
   },
 });
 
