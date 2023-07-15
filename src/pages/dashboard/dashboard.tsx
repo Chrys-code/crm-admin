@@ -7,13 +7,13 @@ const Dashboard: FC = (): JSX.Element => {
     <>
       <Section withPadding={false}>
 
-        <Link to="/email-templates/create-template" style={{ width: '100%' }}>
+        <Link to="/email-templates/template-editor" style={{ width: '100%' }}>
           <Section withPadding withBorder>
             <span>Create Email Template</span>
           </Section>
         </Link>
 
-        <Link to="/users/create-user" style={{ width: '100%' }}>
+        <Link to="/users/user-editor" style={{ width: '100%' }}>
           <Section withPadding withBorder>
             <span>Create New User</span>
           </Section>
