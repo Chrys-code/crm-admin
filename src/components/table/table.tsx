@@ -4,17 +4,16 @@ import { TableProps, TableType } from './table.types';
 import { NavigateFunction, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { deleteEmailRequest } from '../../store/apis/email';
-import {
-  renderEmailHeaders,
-  renderEmailRow,
-  renderUserHeaders,
-  renderUserRow,
-} from './helpers';
+import { renderTrackerHeaders, renderTrackerRow } from './tracker';
+import { renderEmailHeaders, renderEmailRow } from './email';
+import { renderUserHeaders, renderUserRow } from './user';
+import { deleteUserRequest, getUsersRequest } from '../../store/apis/user';
 
 const Table: FC<TableProps> = ({
   tableType,
   dataRows,
   getEmails,
+  getOrganisationUsers,
 }: PropsWithChildren<TableProps>): JSX.Element => {
   const navigate: NavigateFunction = useNavigate();
 
@@ -27,6 +26,12 @@ const Table: FC<TableProps> = ({
     }
 
     if (tableType === 'user') {
+      await deleteUserRequest(id);
+      await getOrganisationUsers();
+      return;
+    }
+
+    if (tableType === 'tracker') {
       return;
     }
   };
@@ -46,6 +51,14 @@ const Table: FC<TableProps> = ({
           <thead>{renderUserHeaders()}</thead>
           <tbody>
             {renderUserRow(dataRows, navigate, deleteRow, tableType)}
+          </tbody>
+        </>
+      )}
+      {tableType === 'tracker' && (
+        <>
+          <thead>{renderTrackerHeaders()}</thead>
+          <tbody>
+            {renderTrackerRow(dataRows, navigate, deleteRow, tableType)}
           </tbody>
         </>
       )}

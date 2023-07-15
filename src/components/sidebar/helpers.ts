@@ -18,6 +18,10 @@ export const getMenuOptionsByLocation = (
     return baseRoutes;
   }
 
+  if (location.startsWith('/analytics')) {
+    return baseRoutes;
+  }
+
   if (location.startsWith('/profile')) {
     return profileRoutes;
   }
@@ -33,3 +37,4 @@ export const getMenuOptionsByLocation = (
     },
   ];
 };
+

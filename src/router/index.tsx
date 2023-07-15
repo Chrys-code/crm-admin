@@ -8,9 +8,13 @@ import Emails from '../pages/emails';
 import Subscription from '../pages/subscription/subscription';
 import Users from '../pages/users';
 import CreateEmailTemplate from '../features/emails/createEmailTemplate/createEmailTemplate';
+
 import EmailTemplatesContainer from '../containers/emailTemplates';
-import UserList from '../features/users/userList';
+import UsersContainer from '../containers/users';
+
 import CreateUser from '../features/users/createUser/createUser';
+import Analytics from '../pages/analytics/analytics';
+import Trackers from '../features/analytics/trackers';
 
 export const router = createBrowserRouter([
   {
@@ -30,7 +34,7 @@ export const router = createBrowserRouter([
         children: [
           {
             path: '/users',
-            element: <UserList />,
+            element: <UsersContainer />,
             errorElement: <ErrorPage />,
           },
           {
@@ -67,6 +71,31 @@ export const router = createBrowserRouter([
           },
         ],
       },
+
+      {
+        path: '/analytics',
+        element: <Analytics />,
+        errorElement: <ErrorPage />,
+        children: [
+          {
+            path: '/analytics',
+            element: <Trackers />,
+            errorElement: <ErrorPage />
+          },
+          {
+            path: '/analytics/create-tracker',
+            element: <></>,
+            errorElement: <ErrorPage />
+          },
+          {
+            path: '/analytics/update-tracker/:id',
+            element: <></>,
+            errorElement: <ErrorPage />
+          }
+        ]
+
+      },
+
       {
         path: '/profile',
         element: <Profile />,

@@ -7,17 +7,17 @@ const Dashboard: FC = (): JSX.Element => {
     <>
       <Section withPadding={false}>
         <Link to="/email-templates/create-template" style={{ width: '100%' }}>
-          <Section type="div" withBorder>
-            <span>Create New Email Template</span>
+          <Section withPadding withBorder>
+            <span>Create Email Template</span>
           </Section>
         </Link>
         <Link to="/users/create-user" style={{ width: '100%' }}>
-          <Section type="div" withBorder>
-            <span>Add New User</span>
+          <Section withPadding withBorder>
+            <span>Create New User</span>
           </Section>
         </Link>
-        <Section type="div" withBorder>
-          <span>SMTH</span>
+        <Section withPadding withBorder>
+          <span>Create New Tracker</span>
         </Section>
       </Section>
     </>

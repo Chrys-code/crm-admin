@@ -1,7 +1,7 @@
 import { generateReauthenticatingThunkApiAction } from '../../helpers';
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { RootState, AppDispatch } from '../../store';
-import { getUserRequest, updateUserRequest, User } from '../../apis/user';
+import { getUserRequest, getUsersRequest, updateUserRequest, User } from '../../apis/user';
 import { UserState } from './user.types';
 
 const initialState: UserState = {

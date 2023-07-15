@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { RouterProvider } from 'react-router-dom';
 import { router } from './router';
 import OrganisationRegisterModal from './features/organisation/components/registerModal';
+import { Organisation } from './store/apis/organisation';
+import { User } from './store/apis/user';
 
 function App({
   getUser,
@@ -33,7 +35,7 @@ function App({
       await getOrganisation({ payload: user.payload.organisation });
     })();
 
-    return (): void => {};
+    return (): void => { };
   }, []);
 
   useEffect((): (() => void) => {
@@ -41,7 +43,7 @@ function App({
       setCurrentEmailOrganisation(userOrganisation);
     }
 
-    return (): void => {};
+    return (): void => { };
   }, [userOrganisation]);
 
   const getAuthUser = async () => {

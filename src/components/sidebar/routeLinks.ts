@@ -11,6 +11,10 @@ export const baseRoutes = [
     label: 'Email Templates',
     action: '/email-templates',
   },
+  {
+    label: 'Analytics',
+    action: '/analytics',
+  },
 ];
 
 export const profileRoutes = [

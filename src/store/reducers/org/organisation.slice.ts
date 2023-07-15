@@ -9,6 +9,7 @@ import {
   getOrganisationRequest,
   updateOrganisationRequest,
 } from '../../apis/organisation';
+import { User, getUsersRequest } from '../../apis/user';
 
 const initialState: OrganisationState = {
   _id: null,
@@ -31,6 +32,8 @@ const getOrganisation = createAsyncThunk<
       { payload }: { payload: string }
     ): Promise<Organisation> => {
       const organisation: Organisation = await getOrganisationRequest(payload);
+      const users: User[] = await getUsersRequest(organisation._id);
+      organisation.users = users;
       return organisation;
     }
   )
@@ -57,6 +60,10 @@ const createOrganisation = createAsyncThunk<
       const organisation: Organisation = await createOrganisationRequest(
         payload
       );
+
+      const users: User[] = await getUsersRequest(organisation._id);
+      organisation.users = users;
+
       return organisation;
     }
   )
@@ -77,10 +84,36 @@ const updateOrganisation = createAsyncThunk<
         id: payload._id,
         payload: payload,
       });
+
+      const users: User[] = await getUsersRequest(organisation._id);
+      organisation.users = users;
+
       return organisation;
     }
   )
 );
+
+const getOrganisationUsers = createAsyncThunk<
+  User[],
+  null,
+  {
+    dispatch: AppDispatch;
+    state: RootState;
+  }
+>(
+  'organisation/getOrganisationUsers',
+  generateReauthenticatingThunkApiAction(
+    async (
+      state: RootState,
+    ): Promise<User[]> => {
+      const orgId: string = state.org._id!;
+      const users: User[] = await getUsersRequest(orgId);
+
+      return users;
+    }
+  )
+);
+
 
 const organisation = createSlice({
   name: 'organisation',
@@ -103,7 +136,15 @@ const organisation = createSlice({
     builder.addCase(
       updateOrganisation.fulfilled,
       (state, { payload }): void => {
-        state = payload;
+        state._id = payload._id;
+        state.title = payload.title;
+        state.users = payload.users;
+      }
+    );
+    builder.addCase(
+      getOrganisationUsers.fulfilled,
+      (state, { payload }): void => {
+        state.users = payload;
       }
     );
   },
@@ -116,4 +157,5 @@ export const actions = {
   getOrganisation,
   createOrganisation,
   updateOrganisation,
+  getOrganisationUsers
 };

@@ -22,18 +22,17 @@ export const SectionContainer = styled.section<SectionContainerStyleProps>`
 
   ${(p) =>
     p.$isMultipleChildNode &&
-    p.type === 'section' &&
     `
-  > * {
-    margin: 0px ${p.theme.space(2)}
-  }
+    > * {
+      margin: 0px ${p.theme.space(2)}
+    }
 
-  > *:first-child {
-    margin-left: 0px;
-  }
-  > *:last-child {
-    margin-right: 0px;
-  }
+    > *:first-child {
+      margin-left: 0px;
+    }
+    > *:last-child {
+      margin-right: 0px;
+    }
 
   `}
 `;
@@ -45,7 +44,7 @@ export const SectionDivContainer = styled.div<SectionContainerStyleProps>`
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    padding: theme.space(4),
+    paddingBottom: theme.space(4),
     paddingTop: $withLabel ? theme.space(10) : theme.space(4),
     backgroundColor: $withBorder
       ? theme.colors.background.white
@@ -58,18 +57,17 @@ export const SectionDivContainer = styled.div<SectionContainerStyleProps>`
 
   ${(p) =>
     p.$isMultipleChildNode &&
-    p.type === 'section' &&
     `
-  > * {
-    margin: 0px ${p.theme.space(2)}
-  }
+    > * {
+      margin: 0px ${p.theme.space(2)}
+    }
 
-  > *:first-child {
-    margin-left: 0px;
-  }
-  > *:last-child {
-    margin-right: 0px;
-  }
+    > *:first-child {
+      margin-left: 0px;
+    }
+    > *:last-child {
+      margin-right: 0px;
+    }
 
   `}
 `;
