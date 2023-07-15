@@ -10,8 +10,8 @@ import {
   updateEmailRequest,
 } from '../../apis/email';
 import { EmailState } from './email.types';
-import { Email } from '../../apis/email/email.types';
-import { serializeEmails } from '../../serializers';
+import { Email, EmailSerializedById } from '../../apis/email/email.types';
+import { serializeItemsById } from '../../serializers';
 
 const initialState: EmailState = {
   emails: [],
@@ -112,7 +112,7 @@ const email = createSlice({
     builder.addCase(getEmails.fulfilled, (state, { payload }): void => {
       state.groups = getGroups(payload);
       state.emails = payload;
-      state.emailsById = serializeEmails(payload);
+      state.emailsById = serializeItemsById(payload) as EmailSerializedById;
     });
     builder.addCase(createEmail.fulfilled, (state, { payload }): void => {
       state.emails = [...state.emails, payload];

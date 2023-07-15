@@ -4,9 +4,9 @@ import {
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { RootState, AppDispatch } from '../../store';
 import { TrackerState } from './tracker.types';
-import { Tracker } from '../../apis/tracker/tracker.types';
+import { Tracker, TrackerSerializedById } from '../../apis/tracker/tracker.types';
 import { createTrackerRequest, getTrackersRequest, updateTrackerRequest } from '../../apis/tracker';
-import { serializeTrackers } from '../../serializers';
+import { serializeItemsById } from '../../serializers';
 
 const initialState: TrackerState = {
     trackers: [],
@@ -102,7 +102,7 @@ const tracker = createSlice({
     extraReducers: (builder): void => {
         builder.addCase(getTrackers.fulfilled, (state, { payload }): void => {
             state.trackers = payload;
-            state.trackersById = serializeTrackers(payload);
+            state.trackersById = serializeItemsById(payload) as TrackerSerializedById;
         });
         builder.addCase(createTracker.fulfilled, (state, { payload }): void => {
             state.trackers = [...state.trackers, payload];
