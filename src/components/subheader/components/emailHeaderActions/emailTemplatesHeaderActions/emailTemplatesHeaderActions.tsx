@@ -6,7 +6,7 @@ const EmailTemplatesHeaderActions: FC = (): JSX.Element => {
   const navigate: NavigateFunction = useNavigate();
   return (
     <>
-      <Button onClick={() => navigate('/email-templates/create-template')}>
+      <Button onClick={() => navigate('/email-templates/template-editor')}>
         Create
       </Button>
     </>

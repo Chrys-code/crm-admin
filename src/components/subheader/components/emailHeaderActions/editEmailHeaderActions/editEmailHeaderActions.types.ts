@@ -1,4 +1,4 @@
-export interface CreateEmailHeaderActionsProps {
+export interface EditEmailHeaderActionsProps {
   groups: string[];
   extendGroups: any;
   createEmail: any;

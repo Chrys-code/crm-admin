@@ -1,6 +1,6 @@
 import React, { FC, PropsWithChildren, useEffect } from 'react'
 import { UsersContainerProps } from './usersContainer.types'
-import UserList from '../../features/users/userList/userList'
+import UserList from '../../features/users/users/users'
 import { RootState, useAppSelector } from '../../store/store'
 import { OrganisationState } from '../../store/reducers/org/organisation.types'
 

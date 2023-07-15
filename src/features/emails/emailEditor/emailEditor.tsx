@@ -13,7 +13,7 @@ import 'ace-builds/src-noconflict/ext-language_tools';
 import {
   CodeEditorContainer,
   PreviewFrame,
-} from './createEmailTemplate.styles';
+} from './emailEditor.styles';
 import ReactDOM from 'react-dom';
 import { toast } from 'react-toastify';
 import { editorInitialvalue } from './helper';
@@ -31,7 +31,7 @@ import { RootState, useAppSelector } from '../../../store/store';
 import { Email } from '../../../store/apis/email/email.types';
 import { EmailState } from '../../../store/reducers/email/email.types';
 
-const CreateEmailTemplate: FC = (): JSX.Element => {
+const EmailEditor: FC = (): JSX.Element => {
   const location: Location = useLocation();
   const navigate: NavigateFunction = useNavigate();
   const { emailsById } = useAppSelector(
@@ -58,14 +58,14 @@ const CreateEmailTemplate: FC = (): JSX.Element => {
       location.pathname.includes('update-template')
     )
       navigate('/email-templates/');
-    return (): void => {};
+    return (): void => { };
   }, [emailsById]);
 
   useEffect((): (() => void) | undefined => {
     if (!id || !emailsById) return;
     const objId: string = id.split('=')[1];
     setSelectedEmail(emailsById[objId]);
-    return (): void => {};
+    return (): void => { };
   }, [id, emailsById]);
 
   useEffect((): (() => void) | undefined => {
@@ -74,7 +74,7 @@ const CreateEmailTemplate: FC = (): JSX.Element => {
       return;
     }
     onEditorChange(editorInitialvalue);
-    return (): void => {};
+    return (): void => { };
   }, [selectedEmail]);
 
   function onEditorChange(newValue: string): void {
@@ -127,4 +127,4 @@ const CreateEmailTemplate: FC = (): JSX.Element => {
     </>
   );
 };
-export default CreateEmailTemplate;
+export default EmailEditor;

@@ -16,9 +16,9 @@ import Analytics from '../pages/analytics/analytics';
 import UsersContainer from '../containers/users';
 import EmailTemplatesContainer from '../containers/emailTemplates';
 import TrackersContainer from '../containers/trackers';
-import CreateUser from '../features/users/createUser/createUser';
-import CreateEmailTemplate from '../features/emails/createEmailTemplate/createEmailTemplate';
-import TrackerEditor from '../features/analytics/trackerEditor/trackerEditor';
+import UserEditor from '../features/users/userEditor';
+import EmailEditor from '../features/emails/emailEditor';
+import TrackerEditor from '../features/analytics/trackerEditor';
 
 export const router = createBrowserRouter([
   {
@@ -42,13 +42,13 @@ export const router = createBrowserRouter([
             errorElement: <ErrorPage />,
           },
           {
-            path: '/users/update-user/:id',
-            element: <CreateUser />,
+            path: '/users/user-editor/:id',
+            element: <UserEditor />,
             errorElement: <ErrorPage />,
           },
           {
-            path: '/users/create-user/',
-            element: <CreateUser />,
+            path: '/users/user-editor/',
+            element: <UserEditor />,
             errorElement: <ErrorPage />,
           },
         ],
@@ -64,13 +64,13 @@ export const router = createBrowserRouter([
             errorElement: <ErrorPage />,
           },
           {
-            path: '/email-templates/update-template/:id',
-            element: <CreateEmailTemplate />,
+            path: '/email-templates/template-editor/:id',
+            element: <EmailEditor />,
             errorElement: <ErrorPage />,
           },
           {
-            path: '/email-templates/create-template/',
-            element: <CreateEmailTemplate />,
+            path: '/email-templates/template-editor/',
+            element: <EmailEditor />,
             errorElement: <ErrorPage />,
           },
         ],

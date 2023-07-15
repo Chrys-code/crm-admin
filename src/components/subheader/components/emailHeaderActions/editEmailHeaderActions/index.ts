@@ -1,4 +1,4 @@
-import CreateEmailHeaderActions from './createEmailHeaderActions';
+import EditEmailHeaderActions from './editEmailHeaderActions';
 import { actions as emailActions } from '../../../../../store/reducers/email';
 import { connect } from 'react-redux';
 import { RootState } from '../../../../../store/store';
@@ -29,4 +29,4 @@ export default connect(mapState, {
   setCurrentEmailTitle,
   setCurrentEmailId,
   clearCurrentEmail,
-})(CreateEmailHeaderActions);
+})(EditEmailHeaderActions);

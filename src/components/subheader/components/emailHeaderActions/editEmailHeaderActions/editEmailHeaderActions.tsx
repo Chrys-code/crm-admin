@@ -12,16 +12,16 @@ import {
   InputLabel,
   InputWrapper,
   Selector,
-} from './createEmailHeaderActions.styles';
+} from './editEmailHeaderActions.styles';
 import { NavigateFunction, useNavigate, useParams } from 'react-router-dom';
-import { CreateEmailHeaderActionsProps } from './createEmailHeaderActions.types';
+import { EditEmailHeaderActionsProps } from './editEmailHeaderActions.types';
 import Popup from '../../../../modal/popup';
 import theme from '../../../../../utils/theme/theme';
 import { RootState, useAppSelector } from '../../../../../store/store';
 import { EmailState } from '../../../../../store/reducers/email/email.types';
 import { Email } from '../../../../../store/apis/email/email.types';
 
-const CreateEmailHeaderActions: FC<CreateEmailHeaderActionsProps> = ({
+const CreateEmailHeaderActions: FC<EditEmailHeaderActionsProps> = ({
   groups,
   extendGroups,
   updateEmail,
@@ -31,7 +31,7 @@ const CreateEmailHeaderActions: FC<CreateEmailHeaderActionsProps> = ({
   setCurrentEmailTitle,
   setCurrentEmailId,
   clearCurrentEmail,
-}: PropsWithChildren<CreateEmailHeaderActionsProps>): JSX.Element => {
+}: PropsWithChildren<EditEmailHeaderActionsProps>): JSX.Element => {
   const { emailsById } = useAppSelector(
     (state: RootState): EmailState => state.email
   );

@@ -30,7 +30,7 @@ export const renderEmailRow = (
                         color="black"
                         fillColor="lightGreen"
                         onClick={() =>
-                            navigate(`/email-templates/update-template/id=${dataRow._id}`, {
+                            navigate(`/email-templates/template-editor/id=${dataRow._id}`, {
                                 state: { id: dataRow._id },
                             })
                         }

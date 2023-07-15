@@ -1,6 +1,6 @@
 import { Location } from 'react-router-dom';
 import EmailTemplatesHeaderActions from './components/emailHeaderActions/emailTemplatesHeaderActions';
-import CreateEmailHeaderActions from './components/emailHeaderActions/createEmailHeaderActions';
+import EditEmailHeaderActions from './components/emailHeaderActions/editEmailHeaderActions';
 import CreateUserHeaderActions from './components/userHeaderActions/createUserHeaderActions/createUserHeaderActions';
 import UsersHeaderActions from './components/userHeaderActions/usersHeaderActions/usersHeaderActions';
 import TrackerHeaderActions from './components/analyticsHeaderActions/trackerHeaderActions/trackerHeaderActions';
@@ -8,49 +8,30 @@ import EditTrackerHeaderActions from './components/analyticsHeaderActions/editTr
 
 export const renderActionButton = (location: Location): JSX.Element => {
 
-  // Email Templates Header Actions START
   if (location.pathname === '/email-templates') {
     return <EmailTemplatesHeaderActions />;
-  }
-
-  if (
-    location.pathname.includes('/email-templates/create-template') ||
-    location.pathname.includes('/email-templates/update-template')
+  } else if (
+    location.pathname.includes('/email-templates/template-editor')
   ) {
-    return <CreateEmailHeaderActions />;
+    return <EditEmailHeaderActions />;
   }
-  // Email Templates Header Actions END
 
 
-
-
-  // Users Header Actions START
   if (location.pathname === '/users') {
     return <UsersHeaderActions />;
-  }
-
-  if (
-    location.pathname.includes('/users/create-user') ||
-    location.pathname.includes('/users/update-user')
-  ) {
+  } else if (
+    location.pathname.includes('/users/user-editor')) {
     return <CreateUserHeaderActions />;
   }
-  // Users Header Actions END
 
 
-
-
-  // Analytics Header Actions START
   if (
     location.pathname == ('/analytics')) {
     return <TrackerHeaderActions />;
-  }
-
-  if (
+  } else if (
     location.pathname.includes('/analytics/tracker-editor')) {
     return <EditTrackerHeaderActions />;
   }
-  // Users Header Actions END
 
   return <></>;
 };

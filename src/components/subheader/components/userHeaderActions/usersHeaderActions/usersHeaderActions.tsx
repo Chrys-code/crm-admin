@@ -6,7 +6,7 @@ const UsersHeaderActions: FC = (): JSX.Element => {
   const navigate: NavigateFunction = useNavigate();
   return (
     <>
-      <Button onClick={() => navigate('/users/create-user')}>Create</Button>
+      <Button onClick={() => navigate('/users/user-editor')}>Create</Button>
     </>
   );
 };

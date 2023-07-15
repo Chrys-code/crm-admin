@@ -30,7 +30,7 @@ export const renderUserRow = (
                         color="black"
                         fillColor="lightGreen"
                         onClick={() =>
-                            navigate(`/users/update-user/id=${dataRow._id}`, {
+                            navigate(`/users/user-editor/id=${dataRow._id}`, {
                                 state: { id: dataRow._id },
                             })
                         }
