@@ -2,19 +2,19 @@ import React, { useEffect, useState } from 'react';
 import { RouterProvider } from 'react-router-dom';
 import { router } from './router';
 import OrganisationRegisterModal from './features/organisation/components/registerModal';
-import { Organisation } from './store/apis/organisation';
-import { User } from './store/apis/user';
 
 function App({
   getUser,
   getOrganisation,
   userOrganisation,
   setCurrentEmailOrganisation,
+  setCurrentTrackerOrganisation
 }: {
   getUser: any;
   getOrganisation: any;
   userOrganisation: any;
   setCurrentEmailOrganisation: any;
+  setCurrentTrackerOrganisation: any;
 }): JSX.Element {
   const acToken = process.env.REACT_APP_BEARER;
 
@@ -38,9 +38,11 @@ function App({
     return (): void => { };
   }, []);
 
+  // Set constant store props
   useEffect((): (() => void) => {
     if (setCurrentEmailOrganisation) {
       setCurrentEmailOrganisation(userOrganisation);
+      setCurrentTrackerOrganisation(userOrganisation);
     }
 
     return (): void => { };

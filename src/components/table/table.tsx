@@ -8,12 +8,14 @@ import { renderTrackerHeaders, renderTrackerRow } from './tracker';
 import { renderEmailHeaders, renderEmailRow } from './email';
 import { renderUserHeaders, renderUserRow } from './user';
 import { deleteUserRequest, getUsersRequest } from '../../store/apis/user';
+import { deleteTrackerRequest } from '../../store/apis/tracker';
 
 const Table: FC<TableProps> = ({
   tableType,
   dataRows,
   getEmails,
   getOrganisationUsers,
+  getTrackers
 }: PropsWithChildren<TableProps>): JSX.Element => {
   const navigate: NavigateFunction = useNavigate();
 
@@ -32,6 +34,8 @@ const Table: FC<TableProps> = ({
     }
 
     if (tableType === 'tracker') {
+      await deleteTrackerRequest(id)
+      await getTrackers();
       return;
     }
   };

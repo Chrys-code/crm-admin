@@ -12,3 +12,14 @@ export interface NewTracker {
     description: string | null;
     organisation: string | null;
 }
+
+export interface TrackerSerializedById {
+    [key: string]: {
+        _id: string;
+        title: string;
+        keyword: string;
+        description: string;
+        organisation: string;
+    };
+}
+

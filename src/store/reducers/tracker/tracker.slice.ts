@@ -6,9 +6,11 @@ import { RootState, AppDispatch } from '../../store';
 import { TrackerState } from './tracker.types';
 import { Tracker } from '../../apis/tracker/tracker.types';
 import { createTrackerRequest, getTrackersRequest, updateTrackerRequest } from '../../apis/tracker';
+import { serializeTrackers } from '../../serializers';
 
 const initialState: TrackerState = {
     trackers: [],
+    trackersById: {},
     currentTracker: {
         _id: null,
         title: null,
@@ -100,6 +102,7 @@ const tracker = createSlice({
     extraReducers: (builder): void => {
         builder.addCase(getTrackers.fulfilled, (state, { payload }): void => {
             state.trackers = payload;
+            state.trackersById = serializeTrackers(payload);
         });
         builder.addCase(createTracker.fulfilled, (state, { payload }): void => {
             state.trackers = [...state.trackers, payload];

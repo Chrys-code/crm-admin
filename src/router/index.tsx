@@ -1,22 +1,24 @@
 import { createBrowserRouter } from 'react-router-dom';
+
+// Layout
+import PageLayout from '../layout/page/pageLayout';
+
+// Pages (acts as guards over feature pages)
 import Dashboard from '../pages/dashboard';
 import Login from '../pages/login';
 import ErrorPage from '../pages/error';
-import PageLayout from '../layout/page/pageLayout';
 import Profile from '../pages/profile';
 import Emails from '../pages/emails';
 import Subscription from '../pages/subscription/subscription';
 import Users from '../pages/users';
-import CreateEmailTemplate from '../features/emails/createEmailTemplate/createEmailTemplate';
+import Analytics from '../pages/analytics/analytics';
 
-// Containers (above feature pages)
 import UsersContainer from '../containers/users';
 import EmailTemplatesContainer from '../containers/emailTemplates';
 import TrackersContainer from '../containers/trackers';
-
-// Pages (acts as guards over feature pages)
 import CreateUser from '../features/users/createUser/createUser';
-import Analytics from '../pages/analytics/analytics';
+import CreateEmailTemplate from '../features/emails/createEmailTemplate/createEmailTemplate';
+import TrackerEditor from '../features/analytics/trackerEditor/trackerEditor';
 
 export const router = createBrowserRouter([
   {
@@ -85,13 +87,13 @@ export const router = createBrowserRouter([
             errorElement: <ErrorPage />
           },
           {
-            path: '/analytics/create-tracker',
-            element: <></>,
+            path: '/analytics/tracker-editor',
+            element: <TrackerEditor />,
             errorElement: <ErrorPage />
           },
           {
-            path: '/analytics/update-tracker/:id',
-            element: <></>,
+            path: '/analytics/tracker-editor/:id',
+            element: <TrackerEditor />,
             errorElement: <ErrorPage />
           }
         ]

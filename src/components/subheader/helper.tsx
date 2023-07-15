@@ -3,8 +3,8 @@ import EmailTemplatesHeaderActions from './components/emailHeaderActions/emailTe
 import CreateEmailHeaderActions from './components/emailHeaderActions/createEmailHeaderActions';
 import CreateUserHeaderActions from './components/userHeaderActions/createUserHeaderActions/createUserHeaderActions';
 import UsersHeaderActions from './components/userHeaderActions/usersHeaderActions/usersHeaderActions';
-import CreateTrackerHeaderActions from './components/analyticsHeaderActions/createTrackerHeaderActions/createTrackerHeaderActions';
 import TrackerHeaderActions from './components/analyticsHeaderActions/trackerHeaderActions/trackerHeaderActions';
+import EditTrackerHeaderActions from './components/analyticsHeaderActions/editTrackerHeaderActions';
 
 export const renderActionButton = (location: Location): JSX.Element => {
 
@@ -42,15 +42,13 @@ export const renderActionButton = (location: Location): JSX.Element => {
 
   // Analytics Header Actions START
   if (
-    location.pathname.includes('/analytics')) {
+    location.pathname == ('/analytics')) {
     return <TrackerHeaderActions />;
   }
 
   if (
-    location.pathname.includes('/analytics/create-tracker') ||
-    location.pathname.includes('/users/update-tracker')
-  ) {
-    return <CreateTrackerHeaderActions />;
+    location.pathname.includes('/analytics/tracker-editor')) {
+    return <EditTrackerHeaderActions />;
   }
   // Users Header Actions END
 

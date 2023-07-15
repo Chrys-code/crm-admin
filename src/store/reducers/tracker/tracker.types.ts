@@ -1,7 +1,8 @@
-import { Tracker } from '../../apis/tracker/tracker.types';
+import { Tracker, TrackerSerializedById } from '../../apis/tracker/tracker.types';
 
 export interface TrackerState {
     trackers: Tracker[];
+    trackersById: TrackerSerializedById;
     currentTracker: StoreTracker;
 }
 

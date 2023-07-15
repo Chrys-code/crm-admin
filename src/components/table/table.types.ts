@@ -5,6 +5,7 @@ export interface TableProps {
   dataRows: any[];
   getEmails: any;
   getOrganisationUsers: any;
+  getTrackers: any;
 }
 
 export interface TableContainerStyleProps { }

@@ -4,9 +4,7 @@ import { NavigateFunction, useNavigate } from 'react-router-dom';
 
 const TrackerHeaderActions: FC = (): JSX.Element => {
     const navigate: NavigateFunction = useNavigate();
-    return (
-        <Button onClick={() => navigate('/analytics/create-tracker')}>Create</Button>
-    );
+    return <Button onClick={() => navigate('/analytics/tracker-editor')}>Create</Button>
 };
 
 export default TrackerHeaderActions
