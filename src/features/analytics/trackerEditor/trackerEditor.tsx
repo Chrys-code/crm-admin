@@ -71,7 +71,7 @@ const TrackerEditor: FC<TrackerEditorProps> = ({ }: PropsWithChildren<TrackerEdi
     return (
         <Section withBorder withPadding>
             <TrackerContentWrapper>
-                <Section type='div'>
+                <Section type='div' >
                     <InputLabel htmlFor='tracker_title'>Title:</InputLabel>
                     <TrackerInputField
                         id="tracker_title"

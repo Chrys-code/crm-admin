@@ -19,6 +19,7 @@ import TrackersContainer from '../containers/trackers';
 import UserEditor from '../features/users/userEditor';
 import EmailEditor from '../features/emails/emailEditor';
 import TrackerEditor from '../features/analytics/trackerEditor';
+import Organisation from '../features/organisation';
 
 export const router = createBrowserRouter([
   {
@@ -31,6 +32,13 @@ export const router = createBrowserRouter([
         element: <Dashboard />,
         errorElement: <ErrorPage />,
       },
+
+      {
+        path: '/organisation',
+        element: <Organisation />,
+        errorElement: <ErrorPage />
+      },
+
       {
         path: '/users',
         element: <Users />,

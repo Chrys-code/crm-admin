@@ -10,6 +10,10 @@ export const getMenuOptionsByLocation = (
     return baseRoutes;
   }
 
+  if (location.startsWith('/organisation')) {
+    return baseRoutes;
+  }
+
   if (location.startsWith('/users')) {
     return baseRoutes;
   }

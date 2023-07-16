@@ -37,13 +37,14 @@ export const SectionContainer = styled.section<SectionContainerStyleProps>`
   `}
 `;
 export const SectionDivContainer = styled.div<SectionContainerStyleProps>`
-  ${({ theme, $withBorder, $withLabel }) => ({
+  ${({ theme, $withBorder, $withLabel, $withPadding }) => ({
     position: 'relative',
     width: '100%',
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
+    padding: $withPadding ? theme.space(4) : '0px',
     paddingBottom: theme.space(4),
     paddingTop: $withLabel ? theme.space(10) : theme.space(4),
     backgroundColor: $withBorder

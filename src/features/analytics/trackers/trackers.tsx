@@ -8,7 +8,7 @@ const Trackers: FC<TrackersProps> = ({ trackers }: PropsWithChildren<TrackersPro
 
     return (
         <TrackersContainer>
-            <Section type='div'>
+            <Section type='div' withPadding={false}>
                 <Section withPadding withBorder >
                     <TrackerTitle>Visitor Count</TrackerTitle>
                     <TrackerSelector type='checkbox' />

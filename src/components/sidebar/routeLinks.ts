@@ -4,6 +4,10 @@ export const baseRoutes = [
     action: '/dashboard',
   },
   {
+    label: 'Organisation',
+    action: '/organisation',
+  },
+  {
     label: 'Users',
     action: '/users',
   },
