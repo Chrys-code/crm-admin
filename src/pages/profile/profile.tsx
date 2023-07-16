@@ -1,12 +1,8 @@
-import React, { FC, PropsWithChildren } from 'react';
-import { ProfileContainer } from './profile.styles';
-import { ProfileProps } from './profile.types';
+import React, { FC } from 'react';
 
-const Profile: FC<
-  ProfileProps
-> = ({}: PropsWithChildren<ProfileProps>): JSX.Element => {
+const Profile: FC = (): JSX.Element => {
   return (
-    <ProfileContainer>
+    <>
       <span>This will be your profile page</span>
       <ul>
         <li>profile edit btn</li>
@@ -17,7 +13,7 @@ const Profile: FC<
       <ul>
         <li>created org (later)</li>
       </ul>
-    </ProfileContainer>
+    </>
   );
 };
 export default Profile;

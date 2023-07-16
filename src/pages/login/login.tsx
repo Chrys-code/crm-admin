@@ -1,6 +1,4 @@
-import React, { FC, PropsWithChildren } from 'react';
-import { LoginContainer } from './login.styles';
-import { LoginProps } from './login.types';
+import React, { FC } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import { Link } from 'react-router-dom';
 
@@ -24,15 +22,13 @@ const LogoutButton = () => {
   );
 };
 
-const Login: FC<
-  LoginProps
-> = ({}: PropsWithChildren<LoginProps>): JSX.Element => {
+const Login: FC = (): JSX.Element => {
   return (
-    <LoginContainer>
+    <>
       <Link to={`/`}>Dashboard</Link>
       <LoginButton />
       <LogoutButton />
-    </LoginContainer>
+    </>
   );
 };
 export default Login;
