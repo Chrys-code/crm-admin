@@ -31,7 +31,7 @@ const getTrackers = createAsyncThunk<
     'tracker/getTrackers',
     generateReauthenticatingThunkApiAction(
         async (state: RootState): Promise<Tracker[] | null> => {
-            const trackers: Tracker[] = await getTrackersRequest(state.user.organisation);
+            const trackers: Tracker[] = await getTrackersRequest(state.user.organisation!);
             return trackers;
         }
     )
@@ -63,12 +63,11 @@ const updateTracker = createAsyncThunk<
 >(
     'tracker/updateTracker',
     generateReauthenticatingThunkApiAction(
-        async (state: RootState): Promise<Tracker> => {
+        async (state: RootState): Promise<void> => {
             const tracker: Tracker = await updateTrackerRequest({
                 id: state.tracker.currentTracker._id as string,
                 payload: state.tracker.currentTracker as Tracker,
             });
-            return tracker;
         }
     )
 );

@@ -55,7 +55,7 @@ const EmailEditor: FC = (): JSX.Element => {
   useEffect((): (() => void) => {
     if (
       !Object.keys(emailsById).length &&
-      location.pathname.includes('update-template')
+      location.pathname.includes('id=')
     )
       navigate('/email-templates/');
     return (): void => { };

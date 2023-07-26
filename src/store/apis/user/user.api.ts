@@ -1,4 +1,4 @@
-import { User } from './user.types';
+import { NewUser, User } from './user.types';
 import { request } from '../helpers';
 
 // const baseUrl: string | undefined = process.env.API_BASE_URL;
@@ -10,6 +10,13 @@ export const getUserRequest = async (id: string): Promise<User> =>
   await request({
     url: `${url}?id=${id}`,
     method: 'GET',
+  });
+
+export const createUserRequest = async (newUser: NewUser): Promise<User> =>
+  await request({
+    url: url,
+    method: 'POST',
+    body: newUser,
   });
 
 export const updateUserRequest = async (

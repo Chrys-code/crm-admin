@@ -3,7 +3,7 @@ import { OrganisationRegisterModalContainer } from './organisationRegisterModal.
 import Popup from '../../../../components/modal/popup';
 import { OrganisationRegisterModalProps } from './organisationRegisterModal.types';
 import { RootState, useAppSelector } from '../../../../store/store';
-import { User } from '@auth0/auth0-react';
+import { UserState } from '../../../../store/reducers/user/user.types';
 
 const OrganisationRegisterModal: FC<OrganisationRegisterModalProps> = ({
   isOpen,
@@ -11,7 +11,7 @@ const OrganisationRegisterModal: FC<OrganisationRegisterModalProps> = ({
   createOrganisation,
   updateUser,
 }: PropsWithChildren<OrganisationRegisterModalProps>): JSX.Element => {
-  const { _id } = useAppSelector((state: RootState): User => state.user);
+  const { _id } = useAppSelector((state: RootState): UserState => state.user);
 
   const [orgTitle, setOrgTitle] = useState<string | null>(null);
 

@@ -1,7 +1,7 @@
 import { Location } from 'react-router-dom';
 import EmailTemplatesHeaderActions from './components/emailHeaderActions/emailTemplatesHeaderActions';
 import EditEmailHeaderActions from './components/emailHeaderActions/editEmailHeaderActions';
-import CreateUserHeaderActions from './components/userHeaderActions/createUserHeaderActions/createUserHeaderActions';
+import EditUserHeaderActions from './components/userHeaderActions/editUserHeaderActions';
 import UsersHeaderActions from './components/userHeaderActions/usersHeaderActions/usersHeaderActions';
 import TrackerHeaderActions from './components/analyticsHeaderActions/trackerHeaderActions/trackerHeaderActions';
 import EditTrackerHeaderActions from './components/analyticsHeaderActions/editTrackerHeaderActions';
@@ -21,7 +21,7 @@ export const renderActionButton = (location: Location): JSX.Element => {
     return <UsersHeaderActions />;
   } else if (
     location.pathname.includes('/users/user-editor')) {
-    return <CreateUserHeaderActions />;
+    return <EditUserHeaderActions />;
   }
 
 

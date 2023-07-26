@@ -1,7 +1,7 @@
 import { generateReauthenticatingThunkApiAction } from '../../helpers';
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { RootState, AppDispatch } from '../../store';
-import { getUserRequest, getUsersRequest, updateUserRequest, User } from '../../apis/user';
+import { getUserRequest, updateUserRequest, User } from '../../apis/user';
 import { UserState } from './user.types';
 
 const initialState: UserState = {
@@ -46,9 +46,13 @@ const updateUser = createAsyncThunk<
       state: RootState,
       { payload }: { payload: string }
     ): Promise<User> => {
-      const userId = state.user._id;
+      const userId: string = state.user._id!;
+
       const updatedUser: User = {
-        ...state.user,
+        _id: state.user._id!,
+        email: state.user.email!,
+        roles: state.user.roles,
+        externalId: state.user.externalId!,
         organisation: payload,
       };
 

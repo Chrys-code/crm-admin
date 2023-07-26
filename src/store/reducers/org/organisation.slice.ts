@@ -9,13 +9,24 @@ import {
   getOrganisationRequest,
   updateOrganisationRequest,
 } from '../../apis/organisation';
-import { User, getUsersRequest } from '../../apis/user';
+import { User, getUsersRequest, updateUserRequest } from '../../apis/user';
+import { UserSerializedById } from '../../apis/user/user.types';
+import { serializeItemsById } from '../../serializers';
 
 const initialState: OrganisationState = {
   _id: null,
   title: null,
   users: [],
+  usersById: {},
+  currentUser: {
+    _id: null,
+    externalId: null,
+    email: null,
+    organisation: null,
+    roles: []
+  }
 };
+
 
 const getOrganisation = createAsyncThunk<
   Organisation,
@@ -118,12 +129,36 @@ const getOrganisationUsers = createAsyncThunk<
 const organisation = createSlice({
   name: 'organisation',
   initialState,
-  reducers: {},
+  reducers: {
+    setCurrentUserId(state, { payload }) {
+      state.currentUser._id = payload;
+    },
+    setCurrentUserExternalId(state, { payload }) {
+      state.currentUser.externalId = payload;
+    },
+    setCurrentUserEmail(state, { payload }) {
+      state.currentUser.email = payload;
+    },
+    setCurrentUserOrganisation(state, { payload }) {
+      state.currentUser.organisation = payload
+    },
+    setCurrentUserRoles(state, { payload }) {
+      state.currentUser.roles = payload;
+    },
+    clearCurrentUser(state) {
+      state.currentUser._id = null
+      state.currentUser.externalId = null
+      state.currentUser.email = null
+      state.currentUser.roles = []
+    }
+  },
   extraReducers: (builder): void => {
     builder.addCase(getOrganisation.fulfilled, (state, { payload }): void => {
       state._id = payload._id;
       state.title = payload.title;
       state.users = payload.users;
+      state.usersById = serializeItemsById(payload.users) as UserSerializedById;
+
     });
     builder.addCase(
       createOrganisation.fulfilled,
